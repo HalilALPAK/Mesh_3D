@@ -111,13 +111,19 @@ figür hizmetini tanıtmak için eklendi:
   dosyasının üzerine kendi görselinizi aynı isimle koyun, ya da
   `css/style.css` içindeki `.campaign-banner` kuralındaki dosya yolunu güncelleyin.
   Banner metni/başlığı `index.html` içinde `#campaign-banner` bölümündedir.
-- Örnek figür ürününün 3D modeli `assets/models/bebek.obj` ve dönüşüm demosundaki
-  `assets/models/transform-demo.glb` — bu dosyalar ham 3D tarama/fotogrametri
-  çıktısı oldukları için (~1 milyon üçgen) çok büyüktü (41 MB / 22 MB), yüklenmeleri
-  yavaştı. Poligon sayısını ~40.000'e indirerek (görsel kalite neredeyse aynı
-  kalacak şekilde) 1,5 MB / 1,7 MB'a düşürdük — artık saniyenin altında yükleniyorlar.
-  Yeni bir müşteri modeli eklerken de benzer şekilde küçültmenizi öneririz: Blender'da
-  "Decimate" modifier'ı, ya da Python'da `trimesh` + `fast-simplification` paketleriyle
+- "Kişiye Özel Bebek Figürü" (`custom_figure_bebek`) ve "Dekoratif Vazo" (`vase`)
+  ürünlerinin `model` alanı yok — sadece fotoğrafla gösteriliyorlar (hero'daki
+  büyük banner da bu yüzden artık dönen model değil, ürünün fotoğrafı). İsterseniz
+  `js/products.js` içine tekrar bir `model: {...}` alanı ekleyerek interaktif 3D
+  görünüme geri döndürebilirsiniz.
+- Sitedeki tek interaktif 3D model artık dönüşüm demosundaki
+  `assets/models/transform-demo.glb` — bu, sayfa yüklenirken değil kullanıcı o
+  bölüme kaydırdığında (lazy-load) yüklendiği için performansı etkilemiyor.
+  Bu dosya da aslında ham 3D tarama/fotogrametri çıktısıydı (~560.000 üçgen,
+  22 MB); poligon sayısını ~40.000'e indirip (görsel kalite neredeyse aynı
+  kalacak şekilde) 1,7 MB'a düşürdük. Yeni bir müşteri modeli eklerken de benzer
+  şekilde küçültmenizi öneririz: Blender'da "Decimate" modifier'ı, ya da Python'da
+  `trimesh` + `fast-simplification` paketleriyle
   `mesh.simplify_quadric_decimation(face_count=40000)` gibi bir komutla yapılabilir
   (dokulu/GLB modellerde UV'leri korumak için `fast_simplification.replay_simplification`
   kullanmak gerekir).

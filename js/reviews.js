@@ -1,5 +1,5 @@
 // ALPOTECH - ürün yorumları ve puanlama
-import { getReviewsFor, addReview } from "./storage.js?v=5";
+import { getReviewsFor, addReview } from "./storage.js?v=6";
 
 // Ürünün "seed" (başlangıç) puanı ile kullanıcıların taraycıda eklediği
 // gerçek yorumları birleştirerek ağırlıklı ortalama puan döndürür.

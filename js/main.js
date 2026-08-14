@@ -1,10 +1,10 @@
 // ALPOTECH - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=5";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=5";
-import { mountLazyViewer } from "./viewer.js?v=5";
-import { addToCart, initCartUI } from "./cart.js?v=5";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=5";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=5";
+import { CONFIG, assetUrl } from "./config.js?v=6";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=6";
+import { mountLazyViewer } from "./viewer.js?v=6";
+import { addToCart, initCartUI } from "./cart.js?v=6";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=6";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=6";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -210,18 +210,31 @@ function renderCategoryNav() {
 function renderHero() {
   const heroProduct = PRODUCTS.find((p) => p.isHero) || PRODUCTS[0];
   const mount = document.getElementById("hero-viewer");
-  // Ürünün kendi rengi tanımlıysa (örn. gerçek doku/renkli bir figür) onu kullan;
-  // tanımlı değilse marka rengiyle (turuncu) göster.
-  const resolvedHeroModel = {
-    ...heroProduct.model,
-    url: assetUrl(heroProduct.model.url),
-    mtl: assetUrl(heroProduct.model.mtl),
-  };
-  mountLazyViewer(mount, resolvedHeroModel, {
-    autoRotate: true,
-    autoRotateSpeed: 3.2,
-    color: heroProduct.color || 0xff6a3d,
-  });
+  const hint = document.getElementById("hero-hint");
+
+  if (heroProduct.model) {
+    // Ürünün kendi rengi tanımlıysa (örn. gerçek doku/renkli bir figür) onu kullan;
+    // tanımlı değilse marka rengiyle (turuncu) göster.
+    const resolvedHeroModel = {
+      ...heroProduct.model,
+      url: assetUrl(heroProduct.model.url),
+      mtl: assetUrl(heroProduct.model.mtl),
+    };
+    mountLazyViewer(mount, resolvedHeroModel, {
+      autoRotate: true,
+      autoRotateSpeed: 3.2,
+      color: heroProduct.color || 0xff6a3d,
+    });
+    hint.textContent = "Modeli fareyle / parmağınızla sürükleyerek her yönden inceleyebilirsiniz.";
+    hint.hidden = false;
+  } else {
+    const img = document.createElement("img");
+    img.className = "hero-viewer-photo";
+    img.src = assetUrl(heroProduct.photos[0]);
+    img.alt = heroProduct.name;
+    mount.appendChild(img);
+    hint.hidden = true;
+  }
 
   document.getElementById("hero-name").textContent = heroProduct.name;
   document.getElementById("hero-desc").textContent = heroProduct.description;

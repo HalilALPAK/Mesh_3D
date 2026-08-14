@@ -1,5 +1,5 @@
 // ALPOTECH - WhatsApp entegrasyon yardımcıları
-import { CONFIG } from "./config.js?v=5";
+import { CONFIG } from "./config.js?v=6";
 
 export function openWhatsApp(message) {
   const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

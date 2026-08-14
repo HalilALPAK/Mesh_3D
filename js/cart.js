@@ -1,8 +1,8 @@
 // ALPOTECH - sepet durumu ve arayüzü
-import { getCart, saveCart } from "./storage.js?v=5";
-import { getProductById, getUnitPrice } from "./products.js?v=5";
-import { CONFIG, assetUrl } from "./config.js?v=5";
-import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=5";
+import { getCart, saveCart } from "./storage.js?v=6";
+import { getProductById, getUnitPrice } from "./products.js?v=6";
+import { CONFIG, assetUrl } from "./config.js?v=6";
+import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=6";
 
 let cart = getCart(); // [{ productId, qty }]
 const listeners = new Set();

@@ -26,8 +26,6 @@ export const PRODUCTS = [
     isHero: true,
     description:
       "Gönderdiğiniz fotoğraftan yola çıkarak size veya sevdiklerinize benzeyen, tamamen kişiye özel bir 3D baskı figür üretiyoruz. Buradaki örnek figür, gönderilen bir bebek fotoğrafından üretilmiştir. Siz de kendi fotoğrafınızı sayfanın altındaki \"Kendi Modelinizi Gönderin\" alanından bize ulaştırabilirsiniz.",
-    model: { type: "obj", url: "assets/models/bebek.obj" },
-    color: 0xe8b88f,
     photos: [
       "assets/images/products/bebek-1.jpg",
     ],
@@ -103,9 +101,6 @@ export const PRODUCTS = [
     featured: true,
     description:
       "Modern hatlara sahip, tamamen 3D baskı ile üretilen dekoratif vazo. Salon, ofis ya da hediye için idealdir. PLA/PETG seçenekleriyle özel renk taleplerinizi karşılayabiliriz.",
-    // Bu STL, Z eksenini "yukarı" kabul eden bir programdan (CAD/dilimleyici) dışa
-    // aktarılmış; Three.js sahnesinde Y ekseni yukarı olduğu için düzeltme rotasyonu.
-    model: { type: "stl", url: "assets/models/vase.stl", rotation: [-Math.PI / 2, 0, 0] },
     photos: [
       "assets/images/products/vase-1.jpg",
     ],
