@@ -1,0 +1,804 @@
+/* ALPOTECH - stil dosyası */
+
+:root {
+  --navy: #101828;
+  --navy-light: #1c2942;
+  --accent: #ff6a3d;
+  --accent-dark: #e2551f;
+  --whatsapp: #25d366;
+  --whatsapp-dark: #1ebc59;
+  --bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --text: #1c2230;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --radius: 14px;
+  --shadow: 0 4px 18px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 12px 40px rgba(16, 24, 40, 0.18);
+  --star: #f5a623;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+img { max-width: 100%; display: block; }
+
+button { font-family: inherit; cursor: pointer; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--accent-dark); }
+
+.btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: #fff; }
+
+.btn-secondary { background: var(--navy); color: #fff; }
+.btn-secondary:hover { background: var(--navy-light); }
+
+.btn-whatsapp { background: var(--whatsapp); color: #fff; }
+.btn-whatsapp:hover:not(:disabled) { background: var(--whatsapp-dark); }
+
+.btn-block { width: 100%; }
+
+.wa-icon { font-size: 1.1em; }
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  position: relative;
+  color: var(--navy);
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icon-btn:hover { background: rgba(0,0,0,0.06); }
+
+/* ===== HEADER ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--navy);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.logo span { color: var(--accent); }
+
+.search-bar {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-bar input {
+  width: 100%;
+  padding: 11px 40px 11px 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  outline: none;
+}
+.search-bar .search-icon {
+  position: absolute;
+  right: 14px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.search-clear {
+  position: absolute;
+  right: 38px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+.cart-btn { color: #fff; font-size: 1.5rem; }
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  font-weight: 700;
+}
+
+.category-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 20px 12px;
+  max-width: 1240px;
+  margin: 0 auto;
+  scrollbar-width: thin;
+}
+.category-pill {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.category-pill:hover { background: var(--accent); border-color: var(--accent); }
+
+/* ===== KAMPANYA BANNERI ===== */
+.campaign-banner {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  background-image: linear-gradient(180deg, rgba(16, 24, 40, 0.25) 0%, rgba(16, 24, 40, 0.55) 55%, rgba(16, 24, 40, 0.88) 100%),
+    url("../assets/images/campaign-transform.jpg");
+  background-size: cover;
+  background-position: center 22%;
+  background-repeat: no-repeat;
+}
+.campaign-content {
+  max-width: 640px;
+  padding: 28px 20px 34px;
+  margin: 0 auto;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+}
+.campaign-tag { background: var(--accent); }
+.campaign-content h2 {
+  font-size: 1.9rem;
+  line-height: 1.25;
+  margin: 12px 0 10px;
+}
+.campaign-content p {
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.55;
+  margin: 0 0 20px;
+  max-width: 52ch;
+}
+
+/* ===== HERO ===== */
+.hero {
+  max-width: 1240px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: minmax(280px, 460px) 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-viewer {
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 30% 30%, #fff, #eef0f5);
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero-info h1 { font-size: 2.1rem; margin: 0 0 12px; color: var(--navy); }
+.hero-info p { color: var(--text-muted); line-height: 1.55; max-width: 46ch; }
+.hero-price { font-size: 1.3rem; font-weight: 700; color: var(--accent-dark); margin: 14px 0 20px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-hint { margin-top: 16px; font-size: 0.82rem; color: var(--text-muted); }
+
+/* ===== MEDIA (3D <-> foto geçişli görüntüleyici) ===== */
+.media { position: relative; }
+.media-stage {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(160deg, #eef1f6, #e3e7ee);
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-viewer .media-stage,
+.hero-viewer { border-radius: 24px; }
+
+.media-3d { position: absolute; inset: 0; }
+.media-3d canvas { display: block; }
+.media-3d.viewer-loading::after {
+  content: "Model yükleniyor...";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.media-3d.viewer-error::after {
+  content: "Model yüklenemedi";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #b91c1c;
+}
+
+.media-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+/* 3D <-> fotoğraf geçişinde oynatılan "dönüşüm" efekti */
+.media-stage.transforming {
+  animation: media-pulse 0.7s ease;
+}
+.media-stage.transforming::after {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.9) 48%, rgba(255, 106, 61, 0.55) 52%, transparent 65%);
+  transform: translateX(-130%);
+  animation: media-sweep 0.7s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+@keyframes media-sweep {
+  to { transform: translateX(130%); }
+}
+@keyframes media-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+
+.media-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+.media-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--navy);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+.media-arrow:hover { background: #fff; }
+.media-arrow-left { left: 8px; }
+.media-arrow-right { right: 8px; }
+
+.media-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+}
+.media-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.media-dot.active { background: var(--accent); }
+
+.media-large { max-width: 100%; }
+
+/* ===== PRODUCT SECTIONS / GRID ===== */
+.product-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 30px 20px 10px;
+}
+.product-section h2 {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  border-left: 5px solid var(--accent);
+  padding-left: 12px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.product-card-info { padding: 14px 16px 18px; }
+.product-card-info h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--navy); }
+
+.product-rating { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; margin-bottom: 8px; }
+.stars { color: var(--star); letter-spacing: 1px; }
+.stars.small { font-size: 0.8rem; }
+.rating-count, .reviews-count { color: var(--text-muted); }
+
+.product-price { font-weight: 700; color: var(--accent-dark); margin-bottom: 12px; }
+.price-from { font-weight: 400; color: var(--text-muted); font-size: 0.75rem; }
+
+.empty-state { color: var(--text-muted); font-size: 0.9rem; padding: 10px 0; }
+
+/* ===== SEPET DRAWER ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 60;
+}
+.overlay.open { opacity: 1; pointer-events: auto; }
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(400px, 100vw);
+  height: 100%;
+  background: #fff;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.cart-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.cart-drawer-head h2 { margin: 0; font-size: 1.2rem; color: var(--navy); }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 10px 20px; }
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.cart-item-photo { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; }
+.cart-item-price { color: var(--text-muted); font-size: 0.8rem; margin: 2px 0 6px; }
+.cart-item-qty { display: flex; align-items: center; gap: 8px; }
+.qty-btn {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--border); background: #fff; font-size: 1rem;
+}
+.qty-btn:hover { background: var(--bg); }
+.cart-item-remove {
+  background: none; border: none; color: #b91c1c; font-size: 0.75rem; text-decoration: underline;
+  margin-left: 6px;
+}
+.cart-item-total { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+
+.cart-drawer-foot { padding: 16px 20px 20px; border-top: 1px solid var(--border); }
+.cart-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px; font-size: 1.05rem; color: var(--navy);
+}
+#cart-empty { padding: 0 20px; }
+
+/* ===== ÜRÜN DETAY MODAL ===== */
+.product-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+  width: min(920px, 94vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 18px;
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-lg);
+}
+.product-modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); }
+
+.product-modal-close {
+  position: sticky;
+  top: 10px;
+  float: right;
+  margin: 10px 10px 0 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+.product-modal-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.product-modal-inner .media { grid-column: 1; }
+.product-modal-inner .media .media-stage { border-radius: 18px 0 0 18px; }
+.product-modal-info { grid-column: 2; padding: 26px 30px 30px; }
+.product-modal-info h2 { margin: 0 0 8px; color: var(--navy); }
+.product-description { color: var(--text-muted); line-height: 1.6; margin: 14px 0; }
+
+.tier-list { margin: 14px 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.tier-row { display: flex; justify-content: space-between; padding: 8px 14px; font-size: 0.86rem; }
+.tier-row + .tier-row { border-top: 1px solid var(--border); }
+.tier-row.active { background: #fff3ec; color: var(--accent-dark); font-weight: 700; }
+
+.qty-selector { display: flex; align-items: center; gap: 14px; margin: 16px 0; }
+.qty-selector label { font-weight: 600; font-size: 0.9rem; }
+.qty-controls { display: flex; align-items: center; gap: 8px; }
+.qty-controls input {
+  width: 56px; text-align: center; padding: 6px 4px; border-radius: 8px; border: 1px solid var(--border);
+}
+
+.modal-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 1.05rem; color: var(--navy); margin: 10px 0 16px;
+}
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 22px 0 14px; }
+
+/* ---- yorumlar ---- */
+.reviews-summary { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 0.95rem; }
+.reviews-avg { font-weight: 700; color: var(--navy); }
+
+.review-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; background: var(--bg); padding: 14px; border-radius: 10px; }
+.review-form-row { display: flex; flex-direction: column; gap: 4px; }
+.review-form-row label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
+.review-form-row input, .review-form-row textarea {
+  padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: 0.9rem;
+  resize: vertical;
+}
+.star-input { display: flex; gap: 4px; font-size: 1.4rem; cursor: pointer; }
+.star-choice { color: #d1d5db; }
+.star-choice.active { color: var(--star); }
+
+.review-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.review-item-head { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; margin-bottom: 4px; }
+.review-date { color: var(--text-muted); margin-left: auto; font-size: 0.78rem; }
+.review-item p { margin: 0; color: var(--text); font-size: 0.9rem; line-height: 1.5; }
+.review-empty { color: var(--text-muted); font-size: 0.88rem; }
+
+/* ===== FOTOĞRAF -> 3D MODEL DÖNÜŞÜM ÖRNEĞİ ===== */
+.transform-demo {
+  max-width: 1240px;
+  margin: 50px auto 0;
+  padding: 0 20px;
+}
+.transform-demo-inner { text-align: center; }
+.transform-demo-inner h2 {
+  color: var(--navy);
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+.transform-demo-inner > p {
+  color: var(--text-muted);
+  max-width: 56ch;
+  margin: 0 auto 30px;
+}
+
+.transform-demo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.transform-demo-photo,
+.transform-demo-viewer-wrap {
+  position: relative;
+  width: min(320px, 42vw);
+  min-width: 220px;
+}
+
+.transform-demo-photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.transform-demo-viewer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, #eef1f6, #e3e7ee);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.transform-demo-plate {
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(16, 24, 40, 0.22) 0%, rgba(16, 24, 40, 0) 72%);
+  z-index: 0;
+}
+
+.transform-demo-label {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.transform-demo-arrow {
+  color: var(--accent);
+  width: 52px;
+  flex-shrink: 0;
+}
+.transform-demo-arrow svg { width: 100%; height: auto; display: block; }
+
+@media (max-width: 700px) {
+  .transform-demo-row { flex-direction: column; }
+  .transform-demo-photo,
+  .transform-demo-viewer-wrap { width: min(320px, 78vw); }
+  .transform-demo-arrow { width: 32px; transform: rotate(90deg); }
+}
+
+/* ===== ÖZEL MODEL / GÖRSEL YÜKLEME ===== */
+.custom-order-section {
+  background: var(--navy);
+  margin-top: 50px;
+  padding: 50px 20px;
+}
+.custom-order-inner { max-width: 720px; margin: 0 auto; color: #fff; }
+.custom-order-inner h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.custom-order-inner p { color: #c8cede; line-height: 1.6; margin-bottom: 26px; }
+
+.custom-order-form { display: flex; flex-direction: column; gap: 16px; }
+
+.file-drop {
+  border: 2px dashed rgba(255,255,255,0.35);
+  border-radius: 14px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.file-drop:hover, .file-drop.dragover { border-color: var(--accent); background: rgba(255,106,61,0.08); }
+.file-drop-icon { font-size: 1.8rem; }
+.file-drop-text { font-weight: 600; }
+.file-drop-sub { font-size: 0.78rem; color: #9aa2b8; }
+
+.file-preview { display: flex; flex-wrap: wrap; gap: 14px; }
+.file-thumb { width: 96px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.file-thumb-box {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.file-thumb-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.file-thumb-icon { font-size: 1.8rem; }
+.file-thumb-ext { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; color: #c8cede; }
+.file-thumb-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(16, 24, 40, 0.75);
+  color: #fff;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.file-thumb-remove:hover { background: var(--accent-dark); }
+.file-thumb-name {
+  font-size: 0.72rem;
+  color: #c8cede;
+  max-width: 96px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-order-form textarea {
+  min-height: 90px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: 0.92rem;
+  resize: vertical;
+}
+
+/* ===== WHATSAPP FLOATING BUTTON ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  z-index: 50;
+  animation: wa-pulse 2.4s infinite;
+}
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  text-align: center;
+  padding: 26px 20px 40px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .product-modal-inner { grid-template-columns: 1fr; }
+  .product-modal-inner .media .media-stage { border-radius: 18px 18px 0 0; }
+  .product-modal-info { grid-column: 1; }
+}
+
+@media (max-width: 640px) {
+  /* Dar ekranlarda arama çubuğu logo+sepet ile aynı satıra sığmadığında
+     sepet ikonu rastgele alt satıra kayıyordu; bunun yerine düzenli olarak
+     1. satır: logo + sepet, 2. satır: tam genişlik arama çubuğu şeklinde diziyoruz. */
+  .header-inner { flex-wrap: wrap; }
+  .logo { order: 1; }
+  .header-actions { order: 2; margin-left: auto; }
+  .search-bar { order: 3; flex-basis: 100%; min-width: 0; }
+
+  .campaign-banner {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+  .campaign-content { padding: 18px 16px 20px; }
+  .campaign-content h2 { font-size: 1.3rem; }
+  .campaign-content p { font-size: 0.88rem; }
+}
+
+@media (max-width: 520px) {
+  .header-inner { gap: 10px; }
+  .logo { font-size: 1.25rem; }
+  .hero-info h1 { font-size: 1.6rem; }
+  .whatsapp-float { bottom: 16px; right: 16px; width: 52px; height: 52px; font-size: 1.5rem; }
+}

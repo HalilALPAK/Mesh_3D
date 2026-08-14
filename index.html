@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>ALPOTECH — 3D Baskı Mağazası</title>
+<link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/style.css?v=3" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="logo">ALPO<span>TECH</span></a>
+
+    <div class="search-bar">
+      <input id="search-input" type="text" placeholder="Ürün ara... (örn. vazo, drone, oyuncak)" autocomplete="off" />
+      <button id="search-clear" class="search-clear" aria-label="Aramayı temizle" hidden>✕</button>
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <nav class="header-actions">
+      <button id="cart-open-btn" class="icon-btn cart-btn" aria-label="Sepeti aç">
+        🛒
+        <span id="cart-badge" class="badge">0</span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="category-nav" id="category-nav"></div>
+</header>
+
+<main id="top">
+
+  <!-- ===== KAMPANYA BANNERI: FOTOĞRAFTAN FİGÜRE DÖNÜŞÜM ===== -->
+  <section class="campaign-banner" id="campaign-banner">
+    <div class="campaign-content">
+      <span class="hero-tag campaign-tag">Yeni Hizmet</span>
+      <h2>Fotoğrafınızı Size Özel Bir 3D Figüre Dönüştürüyoruz</h2>
+      <p>Kendi fotoğrafınızı gönderin; birkaç gün içinde elinizde, size ya da sevdiklerinize benzeyen minyatür bir figür olsun.</p>
+      <button type="button" class="btn btn-primary" id="campaign-cta-btn">Kendi Figürümü Yaptırmak İstiyorum</button>
+    </div>
+  </section>
+
+  <!-- ===== HERO: ÖNE ÇIKAN ÜRÜN 360° ===== -->
+  <section class="hero" id="hero-section">
+    <div class="hero-viewer" id="hero-viewer"></div>
+    <div class="hero-info">
+      <span class="hero-tag">Öne Çıkan Ürün</span>
+      <h1 id="hero-name">Yükleniyor...</h1>
+      <p id="hero-desc"></p>
+      <div class="hero-price" id="hero-price"></div>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="hero-add-btn">Sepete Ekle</button>
+        <button class="btn btn-outline" id="hero-detail-btn">İncele</button>
+      </div>
+      <p class="hero-hint">Modeli fareyle / parmağınızla sürükleyerek her yönden inceleyebilirsiniz.</p>
+    </div>
+  </section>
+
+  <!-- ===== ARAMA SONUÇLARI (arama yapılınca görünür) ===== -->
+  <section class="product-section" id="search-results-section" hidden>
+    <h2>Arama Sonuçları</h2>
+    <div class="product-grid" id="search-results-grid"></div>
+    <p class="empty-state" id="search-empty" hidden>Aramanızla eşleşen ürün bulunamadı.</p>
+  </section>
+
+  <!-- ===== KATEGORİ BÖLÜMLERİ (JS ile dolduruluyor) ===== -->
+  <div id="category-sections"></div>
+
+  <!-- ===== FOTOĞRAF -> 3D MODEL DÖNÜŞÜM ÖRNEĞİ ===== -->
+  <section class="transform-demo" id="transform-demo">
+    <div class="transform-demo-inner">
+      <h2>Fotoğrafınız Böyle Bir 3D Modele Dönüşüyor</h2>
+      <p>Gönderilen bir fotoğraftan üretilmiş gerçek bir örnek: sağdaki modeli döndürüp inceleyebilirsiniz.</p>
+      <div class="transform-demo-row">
+        <div class="transform-demo-photo">
+          <img src="assets/images/transform-demo-photo.jpg" alt="Örnek fotoğraf" />
+          <span class="transform-demo-label">Gönderilen Fotoğraf</span>
+        </div>
+        <div class="transform-demo-arrow" aria-hidden="true">
+          <svg viewBox="0 0 60 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 12 H50 M38 2 L50 12 L38 22" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="transform-demo-viewer-wrap">
+          <div class="transform-demo-viewer" id="transform-demo-viewer"></div>
+          <div class="transform-demo-plate" aria-hidden="true"></div>
+          <span class="transform-demo-label">İnteraktif 3D Model</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ÖZEL MODEL / GÖRSEL YÜKLEME ===== -->
+  <section class="custom-order-section" id="custom-order">
+    <div class="custom-order-inner">
+      <h2>Kendi Modelinizi veya Görselinizi Gönderin</h2>
+      <p>
+        Elinizde bir 3D model dosyası ya da ürettirmek istediğiniz ürünün fotoğrafı/çizimi mi var?
+        Görsellerinizi aşağıdan seçin, kısa bir açıklama yazın; sizi WhatsApp üzerinden ekibimize
+        yönlendirelim. WhatsApp sohbeti açıldığında, seçtiğiniz dosyaları sohbete eklemeniz yeterli.
+      </p>
+
+      <form id="custom-order-form" class="custom-order-form">
+        <label class="file-drop" id="file-drop">
+          <input type="file" id="custom-files" multiple accept="image/*,.stl,.obj" hidden />
+          <span class="file-drop-icon">📎</span>
+          <span class="file-drop-text">Görsel veya model dosyası seçmek için tıklayın</span>
+          <span class="file-drop-sub">PNG, JPG, STL, OBJ desteklenir</span>
+        </label>
+        <div id="file-preview" class="file-preview"></div>
+
+        <textarea id="custom-desc" placeholder="Ne üretmemizi istersiniz? Ölçü, renk, malzeme gibi detayları yazabilirsiniz." maxlength="500"></textarea>
+
+        <button type="submit" class="btn btn-whatsapp">
+          <span class="wa-icon">✆</span> WhatsApp'tan Gönder
+        </button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== SEPET DRAWER ===== -->
+<div class="overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-head">
+    <h2>Sepetim</h2>
+    <button id="cart-close-btn" class="icon-btn" aria-label="Kapat">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <p class="empty-state" id="cart-empty">Sepetiniz boş.</p>
+  <div class="cart-drawer-foot">
+    <div class="cart-total-row">
+      <span>Toplam</span>
+      <strong id="cart-total">0₺</strong>
+    </div>
+    <button id="cart-confirm-btn" class="btn btn-whatsapp" disabled>
+      <span class="wa-icon">✆</span> Sepeti Onayla (WhatsApp)
+    </button>
+  </div>
+</aside>
+
+<!-- ===== ÜRÜN DETAY MODAL ===== -->
+<div class="overlay" id="product-overlay"></div>
+<div class="product-modal" id="product-modal">
+  <button class="icon-btn product-modal-close" id="product-modal-close" aria-label="Kapat">✕</button>
+  <div class="product-modal-inner" id="product-modal-inner"></div>
+</div>
+
+<!-- ===== SABİT WHATSAPP BUTONU ===== -->
+<a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp ile iletişime geçin">
+  ✆
+</a>
+
+<footer class="site-footer">
+  <p>© <span id="footer-year"></span> ALPOTECH — Tüm ürünler talebe göre 3D baskı ile üretilir.</p>
+</footer>
+
+<script type="module" src="js/main.js?v=3"></script>
+</body>
+</html>
