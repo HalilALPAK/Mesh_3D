@@ -1,10 +1,10 @@
 // ALPOTECH - ana uygulama mantığı
-import { CONFIG } from "./config.js?v=3";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=3";
-import { mountLazyViewer } from "./viewer.js?v=3";
-import { addToCart, initCartUI } from "./cart.js?v=3";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=3";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=3";
+import { CONFIG } from "./config.js?v=4";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=4";
+import { mountLazyViewer } from "./viewer.js?v=4";
+import { addToCart, initCartUI } from "./cart.js?v=4";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=4";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=4";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -425,6 +425,7 @@ function initCustomOrderForm() {
   const form = document.getElementById("custom-order-form");
   const descInput = document.getElementById("custom-desc");
   const dropText = fileDrop.querySelector(".file-drop-text");
+  const attachHint = document.getElementById("file-attach-hint");
 
   function setFiles(files) {
     const dt = new DataTransfer();
@@ -444,6 +445,7 @@ function initCustomOrderForm() {
     dropText.textContent = files.length
       ? `${files.length} dosya seçildi`
       : "Görsel veya model dosyası seçmek için tıklayın";
+    attachHint.hidden = files.length === 0;
 
     files.forEach((file, index) => {
       const thumb = document.createElement("div");
