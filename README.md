@@ -146,6 +146,21 @@ seçtiği dosya adlarını da içeren hazır bir mesajla WhatsApp sohbeti açıl
 kullanıcı seçtiği dosyaları o sohbete elle sürükleyip ekler. Bu, WhatsApp'ın
 teknik bir sınırlamasıdır, siteden kaynaklanmıyor.
 
+## Neden bazen hızlı bazen yavaş yükleniyordu? (CDN)
+
+GitHub Pages, dosyaları sadece **10 dakika** önbellekte tutuyor (`Cache-Control: max-age=600`)
+ve bunu değiştirme imkanı yok — bu yüzden aynı model bazen anında, bazen birkaç
+saniyede yükleniyordu. Çözüm olarak canlı sitede (localhost dışında) tüm ürün
+model/fotoğrafları otomatik olarak **jsDelivr** üzerinden servis ediliyor
+(`js/config.js` içindeki `ASSET_BASE`/`assetUrl()`), three.js kütüphanesini zaten
+oradan çektiğimiz gibi. jsDelivr aynı GitHub deposunu 7 gün+ önbellekte tutan,
+dünya genelinde tutarlı ve hızlı, ücretsiz bir CDN. Yerelde (localhost) test
+ederken bu devre dışı kalır, dosyalar doğrudan yerel klasörden okunur.
+
+Önemli: jsDelivr `@main` dalını takip eder ama önbelleği anında temizlenmez;
+`git push` sonrası canlıdaki değişikliklerin jsDelivr'e yansıması birkaç dakika
+sürebilir (GitHub Pages'in kendisi genelde daha hızlı günceller).
+
 ## Tarayıcı desteği
 
 Three.js'in ES module + importmap kullanımı güncel Chrome, Edge, Firefox ve

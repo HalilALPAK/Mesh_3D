@@ -1,10 +1,10 @@
 // ALPOTECH - ana uygulama mantığı
-import { CONFIG } from "./config.js?v=4";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=4";
-import { mountLazyViewer } from "./viewer.js?v=4";
-import { addToCart, initCartUI } from "./cart.js?v=4";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=4";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=4";
+import { CONFIG, assetUrl } from "./config.js?v=5";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=5";
+import { mountLazyViewer } from "./viewer.js?v=5";
+import { addToCart, initCartUI } from "./cart.js?v=5";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=5";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=5";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -63,7 +63,7 @@ function createMediaViewer(product, { autoRotate = true } = {}) {
       imgEl.style.display = "block";
       if (badge) badge.style.display = "none";
       const photoIdx = Number(mode.replace("photo", ""));
-      imgEl.src = product.photos[photoIdx];
+      imgEl.src = assetUrl(product.photos[photoIdx]);
       if (viewer) viewer.setPaused(true);
     }
   }
@@ -92,7 +92,12 @@ function createMediaViewer(product, { autoRotate = true } = {}) {
   if (hasModel) {
     const viewerOpts = { autoRotate };
     if (product.color) viewerOpts.color = product.color;
-    lazyHandle = mountLazyViewer(mount3d, product.model, viewerOpts);
+    const resolvedModel = {
+      ...product.model,
+      url: assetUrl(product.model.url),
+      mtl: assetUrl(product.model.mtl),
+    };
+    lazyHandle = mountLazyViewer(mount3d, resolvedModel, viewerOpts);
   }
   update();
 
@@ -207,7 +212,12 @@ function renderHero() {
   const mount = document.getElementById("hero-viewer");
   // Ürünün kendi rengi tanımlıysa (örn. gerçek doku/renkli bir figür) onu kullan;
   // tanımlı değilse marka rengiyle (turuncu) göster.
-  mountLazyViewer(mount, heroProduct.model, {
+  const resolvedHeroModel = {
+    ...heroProduct.model,
+    url: assetUrl(heroProduct.model.url),
+    mtl: assetUrl(heroProduct.model.mtl),
+  };
+  mountLazyViewer(mount, resolvedHeroModel, {
     autoRotate: true,
     autoRotateSpeed: 3.2,
     color: heroProduct.color || 0xff6a3d,
@@ -538,7 +548,7 @@ function initTransformDemo() {
   const mount = document.getElementById("transform-demo-viewer");
   mountLazyViewer(
     mount,
-    { type: "glb", url: "assets/models/transform-demo.glb" },
+    { type: "glb", url: assetUrl("assets/models/transform-demo.glb") },
     { autoRotate: true, autoRotateSpeed: 2.6 }
   );
 }
