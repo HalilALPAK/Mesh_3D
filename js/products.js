@@ -11,13 +11,13 @@
 // belirtilmezse marka turuncusu ve genel bir ikon kullanılır.
 export const CATEGORIES = [
   { id: "featured", label: "Öne Çıkanlar", color: "#ff6a3d", icon: "star" },
-  { id: "custom", label: "Kişiye Özel Figürler", color: "#8b5cf6", icon: "gift" },
-  { id: "home", label: "Ev Eşyaları", color: "#14b8a6", icon: "home" },
-  { id: "toys", label: "Oyuncaklar", color: "#ec4899", icon: "blocks" },
-  { id: "accessories", label: "Aksesuarlar", color: "#3b82f6", icon: "sliders" },
-  { id: "industrial", label: "Endüstriyel", color: "#06b6d4", icon: "gear" },
-  { id: "drone", label: "Drone", color: "#6366f1", icon: "drone" },
-  { id: "car", label: "Otomobil", color: "#ef4444", icon: "car" },
+  { id: "custom", label: "Kişiye Özel Figürler", color: "#a8447a", icon: "gift" },
+  { id: "home", label: "Ev Eşyaları", color: "#4f9d69", icon: "home" },
+  { id: "toys", label: "Oyuncaklar", color: "#e0a527", icon: "blocks" },
+  { id: "accessories", label: "Aksesuarlar", color: "#2f8f8a", icon: "sliders" },
+  { id: "industrial", label: "Endüstriyel", color: "#8a6a4f", icon: "gear" },
+  { id: "drone", label: "Drone", color: "#3b6ea5", icon: "drone" },
+  { id: "car", label: "Otomobil", color: "#c23b3b", icon: "car" },
 ];
 
 export const PRODUCTS = [
@@ -397,6 +397,183 @@ export const PRODUCTS = [
     ],
     ratingSeed: 4.9,
     reviewCountSeed: 17,
+  },
+  {
+    id: "dumbbell_keychain",
+    name: "Mini Dambıl Anahtarlığı",
+    category: "accessories",
+    featured: false,
+    description:
+      "Spor severler için minik dambıl formunda anahtarlık. Pembe ve siyah renk seçenekleriyle üretilebilir; spor çantasına takmak için ideal.",
+    photos: [
+      "assets/images/products/dumbbell-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 89 },
+      { minQty: 3, price: 75 },
+      { minQty: 10, price: 65 },
+    ],
+    ratingSeed: 4.8,
+    reviewCountSeed: 9,
+  },
+  {
+    id: "guitar_keychain",
+    name: "Gitar Anahtarlığı",
+    category: "accessories",
+    featured: false,
+    description:
+      "Elektro ya da akustik gitar formunda, farklı renk ve model seçenekleriyle üretilebilen anahtarlık. Müzisyen dostlarınıza hediye için idealdir.",
+    photos: [
+      "assets/images/products/guitar-keychain-1.jpg",
+      "assets/images/products/guitar-keychain-2.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 99 },
+      { minQty: 3, price: 85 },
+      { minQty: 10, price: 75 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 13,
+  },
+  {
+    id: "tennis_keychain",
+    name: "Tenis Raketi Anahtarlığı",
+    category: "accessories",
+    featured: false,
+    description:
+      "Pastel renk seçenekleriyle üretilen minyatür tenis raketi anahtarlığı. Spor çantası ya da anahtarlar için şık bir aksesuar.",
+    photos: [
+      "assets/images/products/tennis-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 89 },
+      { minQty: 3, price: 75 },
+      { minQty: 10, price: 65 },
+    ],
+    ratingSeed: 4.7,
+    reviewCountSeed: 6,
+  },
+  {
+    id: "spiderman_keychain",
+    name: "Örümcek Kahraman Mini Figür Anahtarlığı",
+    category: "toys",
+    featured: false,
+    description:
+      "Sevilen örümcek kahramanın mini figür anahtarlığı. Çanta ya da anahtarlıklarınıza takarak taşıyabilirsiniz.",
+    photos: [
+      "assets/images/products/spiderman-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 119 },
+      { minQty: 3, price: 105 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 21,
+  },
+  {
+    id: "basketball_keychain",
+    name: "Basketbol Topu Anahtarlığı",
+    category: "accessories",
+    featured: false,
+    description:
+      "Gerçekçi doku detaylarına sahip minyatür basketbol topu anahtarlığı. Basketbol severler için sevimli bir aksesuar.",
+    photos: [
+      "assets/images/products/basketball-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 79 },
+      { minQty: 3, price: 69 },
+      { minQty: 10, price: 59 },
+    ],
+    ratingSeed: 4.8,
+    reviewCountSeed: 11,
+  },
+  {
+    id: "plate_keychain",
+    name: "Özelleştirilebilir Plaka Anahtarlığı",
+    category: "custom",
+    featured: true,
+    description:
+      "Araç plakanız ve isminizle kişiselleştirilen, gerçek plaka görünümlü anahtarlık. Sürücüler için hem şık hem pratik bir hediye.",
+    photos: [
+      "assets/images/products/plate-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 119 },
+      { minQty: 3, price: 105 },
+      { minQty: 10, price: 89 },
+    ],
+    ratingSeed: 5.0,
+    reviewCountSeed: 8,
+  },
+  {
+    id: "football_keychain",
+    name: "Futbol Topu Anahtarlığı",
+    category: "accessories",
+    featured: false,
+    description:
+      "Klasik siyah-beyaz ya da renkli desenli futbol topu anahtarlığı; farklı boy seçenekleriyle üretilebilir. Futbolseverler için pratik bir hediye.",
+    photos: [
+      "assets/images/products/football-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 79 },
+      { minQty: 3, price: 69 },
+      { minQty: 10, price: 59 },
+    ],
+    ratingSeed: 4.8,
+    reviewCountSeed: 15,
+  },
+  {
+    id: "gumball_keychain",
+    name: "Esnek Mini Karakter Anahtarlığı",
+    category: "toys",
+    featured: false,
+    description:
+      "Esnek, hareketli eklemlere sahip sevimli karakter anahtarlığı. Çocuklar ve koleksiyoncular için eğlenceli bir aksesuar.",
+    photos: [
+      "assets/images/products/gumball-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 129 },
+      { minQty: 3, price: 115 },
+    ],
+    ratingSeed: 4.7,
+    reviewCountSeed: 7,
+  },
+  {
+    id: "ironman_keychain",
+    name: "Zırhlı Kahraman Mini Figür Anahtarlığı",
+    category: "toys",
+    featured: false,
+    description:
+      "Detaylı boyalı, mini figür formunda zırhlı kahraman anahtarlığı. Süper kahraman hayranları için koleksiyonluk bir aksesuar.",
+    photos: [
+      "assets/images/products/ironman-keychain-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 119 },
+      { minQty: 3, price: 105 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 18,
+  },
+  {
+    id: "spiderman_shelfsitter",
+    name: "Örümcek Kahraman Raf Figürü",
+    category: "toys",
+    featured: true,
+    description:
+      "Raf, kitaplık ya da masa kenarına tırmanır pozisyonda oturan dekoratif kahraman figürü. Oda ve ofis dekoru için eğlenceli bir detay.",
+    photos: [
+      "assets/images/products/spiderman-shelfsitter-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 179 },
+      { minQty: 3, price: 159 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 12,
   },
 ];
 

@@ -1,11 +1,11 @@
 // Kardem3D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=9";
-import { icon } from "./icons.js?v=9";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=9";
-import { mountLazyViewer } from "./viewer.js?v=9";
-import { addToCart, initCartUI } from "./cart.js?v=9";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=9";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=9";
+import { CONFIG, assetUrl } from "./config.js?v=10";
+import { icon } from "./icons.js?v=10";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=10";
+import { mountLazyViewer } from "./viewer.js?v=10";
+import { addToCart, initCartUI } from "./cart.js?v=10";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=10";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=10";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında

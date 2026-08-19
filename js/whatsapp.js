@@ -1,5 +1,5 @@
 // Kardem3D - WhatsApp entegrasyon yardımcıları
-import { CONFIG } from "./config.js?v=9";
+import { CONFIG } from "./config.js?v=10";
 
 export function openWhatsApp(message) {
   const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
