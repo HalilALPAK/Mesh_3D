@@ -107,10 +107,16 @@ dönen banner alanında gösterilir (yalnızca bir üründe kullanın).
 
 Kategori listesini (etiketleri) değiştirmek isterseniz `js/products.js`
 dosyasının başındaki `CATEGORIES` dizisini düzenleyin. Her kategorinin kendi
-rengi (`color`, hex kod) ve emojisi (`icon`) var — kategori sekmesinde, ürün
+rengi (`color`, hex kod) ve ikonu (`icon`) var — kategori sekmesinde, ürün
 kartının üst şeridinde ve bölüm başlığında otomatik kullanılır; siteyi canlı
-ve renkli tutan asıl unsur bu. Yeni kategori eklerken bu iki alanı da vermeniz
-önerilir.
+ve renkli tutan asıl unsur bu.
+
+**İkonlar:** Site emoji kullanmaz, tamamı `js/icons.js` içinde tanımlı temiz
+çizgi ikonlardır (arama, sepet, WhatsApp, kategori ikonları vb.). `icon` alanı
+`js/icons.js` içindeki `ICONS` nesnesinin bir anahtarı olmalı (örn. `"home"`,
+`"gear"`, `"car"`). Yeni bir kategori için uygun ikon yoksa `js/icons.js`
+içine aynı stilde (24x24 viewBox, `stroke="currentColor"`) yeni bir tane
+ekleyebilirsiniz.
 
 Bir ürünün 3D önizlemesine özel bir renk vermek isterseniz `color` alanını
 onaltılık (hex) renk kodu olarak ekleyin, örn. `color: 0xe8b88f,` (belirtilmezse

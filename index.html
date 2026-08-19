@@ -8,7 +8,10 @@
 <meta http-equiv="Expires" content="0" />
 <title>Kardem3D — 3D Baskı Mağazası</title>
 <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="css/style.css?v=8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css?v=9" />
 <script type="importmap">
 {
   "imports": {
@@ -27,13 +30,13 @@
 
     <div class="search-bar">
       <input id="search-input" type="text" placeholder="Ürün ara... (örn. vazo, drone, oyuncak)" autocomplete="off" />
-      <button id="search-clear" class="search-clear" aria-label="Aramayı temizle" hidden>✕</button>
-      <span class="search-icon">🔍</span>
+      <button id="search-clear" class="search-clear" aria-label="Aramayı temizle" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+      <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.5"/><line x1="14.8" y1="14.8" x2="20" y2="20"/></svg></span>
     </div>
 
     <nav class="header-actions">
       <button id="cart-open-btn" class="icon-btn cart-btn" aria-label="Sepeti aç">
-        🛒
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 3h2.2l1.1 3M5.8 6l2.1 9.2a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20 7H5.8z"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
         <span id="cart-badge" class="badge">0</span>
       </button>
     </nav>
@@ -44,7 +47,8 @@
 
 <!-- ===== KARGO BİLGİ ŞERİDİ ===== -->
 <div class="shipping-banner">
-  🚚 <strong>1000₺ ve üzeri</strong> siparişlerde kargo bedava — altındaki siparişlerde <strong>150₺</strong> kargo ücreti eklenir.
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="8" rx="1"/><path d="M15 11h4l3 3v2h-7z"/><circle cx="7" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg>
+  <strong>1000₺ ve üzeri</strong> siparişlerde kargo bedava — altındaki siparişlerde <strong>150₺</strong> kargo ücreti eklenir.
 </div>
 
 <main id="top">
@@ -120,20 +124,21 @@
       <form id="custom-order-form" class="custom-order-form">
         <label class="file-drop" id="file-drop">
           <input type="file" id="custom-files" multiple accept="image/*,.stl,.obj" hidden />
-          <span class="file-drop-icon">📎</span>
+          <span class="file-drop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,9 12,4 17,9"/><line x1="12" y1="4" x2="12" y2="16"/><polyline points="4,16 4,20 20,20 20,16"/></svg></span>
           <span class="file-drop-text">Görsel veya model dosyası seçmek için tıklayın</span>
           <span class="file-drop-sub">PNG, JPG, STL, OBJ desteklenir</span>
         </label>
         <div id="file-preview" class="file-preview"></div>
         <p class="file-attach-hint" id="file-attach-hint" hidden>
-          📎 WhatsApp sohbeti açılınca bu dosyaları <strong>siz elle sohbete eklemelisiniz</strong> —
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,9 12,4 17,9"/><line x1="12" y1="4" x2="12" y2="16"/><polyline points="4,16 4,20 20,20 20,16"/></svg>
+          WhatsApp sohbeti açılınca bu dosyaları <strong>siz elle sohbete eklemelisiniz</strong> —
           WhatsApp linkleri dosya göndermeye izin vermediği için otomatik gönderilmezler.
         </p>
 
         <textarea id="custom-desc" placeholder="Ne üretmemizi istersiniz? Ölçü, renk, malzeme gibi detayları yazabilirsiniz." maxlength="500"></textarea>
 
         <button type="submit" class="btn btn-whatsapp">
-          <span class="wa-icon">✆</span> WhatsApp'tan Gönder
+          <span class="wa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="6"/><polygon points="8,17 8,21 13,17"/><circle cx="9" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span> WhatsApp'tan Gönder
         </button>
       </form>
     </div>
@@ -146,7 +151,7 @@
 <aside class="cart-drawer" id="cart-drawer">
   <div class="cart-drawer-head">
     <h2>Sepetim</h2>
-    <button id="cart-close-btn" class="icon-btn" aria-label="Kapat">✕</button>
+    <button id="cart-close-btn" class="icon-btn" aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
   </div>
   <div class="cart-items" id="cart-items"></div>
   <p class="empty-state" id="cart-empty">Sepetiniz boş.</p>
@@ -165,7 +170,7 @@
       <strong id="cart-total">0₺</strong>
     </div>
     <button id="cart-confirm-btn" class="btn btn-whatsapp" disabled>
-      <span class="wa-icon">✆</span> Sepeti Onayla (WhatsApp)
+      <span class="wa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="6"/><polygon points="8,17 8,21 13,17"/><circle cx="9" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span> Sepeti Onayla (WhatsApp)
     </button>
   </div>
 </aside>
@@ -173,13 +178,13 @@
 <!-- ===== ÜRÜN DETAY MODAL ===== -->
 <div class="overlay" id="product-overlay"></div>
 <div class="product-modal" id="product-modal">
-  <button class="icon-btn product-modal-close" id="product-modal-close" aria-label="Kapat">✕</button>
+  <button class="icon-btn product-modal-close" id="product-modal-close" aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
   <div class="product-modal-inner" id="product-modal-inner"></div>
 </div>
 
 <!-- ===== SABİT WHATSAPP BUTONU ===== -->
 <a href="#" id="whatsapp-float" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp ile iletişime geçin">
-  ✆
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="6"/><polygon points="8,17 8,21 13,17"/><circle cx="9" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg>
 </a>
 
 <footer class="site-footer">

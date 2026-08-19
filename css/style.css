@@ -30,14 +30,52 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+  font-family: "Plus Jakarta Sans", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
   background: linear-gradient(180deg, #f8f7fc 0%, var(--bg) 320px, var(--bg) 100%);
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 img { max-width: 100%; display: block; }
 
 button { font-family: inherit; cursor: pointer; }
+
+h1, h2, h3 { letter-spacing: -0.02em; }
+
+/* ===== İKONLAR (emoji yerine tek biçimli çizgi ikonlar, js/icons.js) ===== */
+.icon-btn svg,
+.search-icon svg,
+.search-clear svg,
+.cart-btn > svg,
+.wa-icon svg,
+.file-drop-icon svg,
+.file-attach-hint svg,
+.shipping-banner svg,
+.whatsapp-float svg,
+.media-arrow svg,
+.file-thumb-icon svg,
+.file-thumb-remove svg,
+.free-shipping-hint svg,
+.cat-icon {
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  vertical-align: -0.22em;
+  flex-shrink: 0;
+}
+.search-icon svg, .search-clear svg { width: 18px; height: 18px; }
+.cart-btn > svg { width: 20px; height: 20px; }
+.icon-btn svg { width: 18px; height: 18px; }
+.wa-icon svg { width: 1.15em; height: 1.15em; }
+.file-drop-icon svg { width: 28px; height: 28px; }
+.file-attach-hint svg { width: 16px; height: 16px; }
+.shipping-banner svg { width: 16px; height: 16px; }
+.whatsapp-float svg { width: 26px; height: 26px; }
+.media-arrow svg { width: 16px; height: 16px; }
+.file-thumb-icon svg { width: 28px; height: 28px; }
+.file-thumb-remove svg { width: 12px; height: 12px; }
+.free-shipping-hint svg { width: 15px; height: 15px; }
+.cat-icon { width: 15px; height: 15px; margin-right: 6px; }
 
 .btn {
   display: inline-flex;
@@ -54,8 +92,15 @@ button { font-family: inherit; cursor: pointer; }
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover:not(:disabled) { background: var(--accent-dark); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 130%);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(255, 106, 61, 0.32);
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(255, 106, 61, 0.4);
+  transform: translateY(-1px);
+}
 
 .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
 .btn-outline:hover { background: var(--navy); color: #fff; }
@@ -188,9 +233,12 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
 }
+.category-pill .cat-icon { margin-right: 7px; }
 .category-pill:hover {
   filter: brightness(1.12);
   transform: translateY(-1px);
@@ -205,6 +253,11 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.85rem;
   padding: 9px 16px;
   line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .shipping-banner strong { font-weight: 800; }
 
@@ -419,6 +472,14 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 18px;
   border-left: 5px solid var(--cat-color, var(--accent));
   padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+.product-section h2 .cat-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  color: var(--cat-color, var(--accent));
 }
 
 .product-grid {
@@ -552,6 +613,10 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 600;
   text-align: center;
   margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .free-shipping-hint-success {
   background: var(--success-soft);

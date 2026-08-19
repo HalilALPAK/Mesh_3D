@@ -1,8 +1,9 @@
 // Kardem3D - sepet durumu ve arayüzü
-import { getCart, saveCart } from "./storage.js?v=8";
-import { getProductById, getUnitPrice } from "./products.js?v=8";
-import { CONFIG, assetUrl } from "./config.js?v=8";
-import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=8";
+import { getCart, saveCart } from "./storage.js?v=9";
+import { getProductById, getUnitPrice } from "./products.js?v=9";
+import { CONFIG, assetUrl } from "./config.js?v=9";
+import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=9";
+import { icon } from "./icons.js?v=9";
 
 let cart = getCart(); // [{ productId, qty }]
 const listeners = new Set();
@@ -140,7 +141,7 @@ export function initCartUI() {
     } else if (freeShipping) {
       freeShippingHintEl.hidden = false;
       freeShippingHintEl.className = "free-shipping-hint free-shipping-hint-success";
-      freeShippingHintEl.textContent = "🎉 Kargonuz ücretsiz!";
+      freeShippingHintEl.innerHTML = `${icon("checkCircle")} Kargonuz ücretsiz!`;
     } else {
       freeShippingHintEl.hidden = false;
       freeShippingHintEl.className = "free-shipping-hint";

@@ -6,17 +6,18 @@
 // photos: ürünün gerçek basılmış hâlinin fotoğrafları (arrayin ilk elemanı kapak fotoğrafı olur).
 // priceTiers: adete göre değişen fiyat kademeleri; sıralı ve artan minQty bekler.
 
-// color: kategori sekmesinin/başlığının rengi (hex). Her kategori kendi rengiyle
-// ayrılsın diye verildi; belirtilmezse marka turuncusu kullanılır.
+// color: kategori sekmesinin/başlığının rengi (hex). icon: js/icons.js içindeki
+// ICONS anahtarlarından biri (emoji değil, temiz çizgi ikon). Her ikisi de
+// belirtilmezse marka turuncusu ve genel bir ikon kullanılır.
 export const CATEGORIES = [
-  { id: "featured", label: "Öne Çıkanlar", color: "#ff6a3d", icon: "⭐" },
-  { id: "custom", label: "Kişiye Özel Figürler", color: "#8b5cf6", icon: "🎁" },
-  { id: "home", label: "Ev Eşyaları", color: "#14b8a6", icon: "🏠" },
-  { id: "toys", label: "Oyuncaklar", color: "#ec4899", icon: "🧸" },
-  { id: "accessories", label: "Aksesuarlar", color: "#3b82f6", icon: "🔧" },
-  { id: "industrial", label: "Endüstriyel", color: "#06b6d4", icon: "⚙️" },
-  { id: "drone", label: "Drone", color: "#6366f1", icon: "🚁" },
-  { id: "car", label: "Otomobil", color: "#ef4444", icon: "🚗" },
+  { id: "featured", label: "Öne Çıkanlar", color: "#ff6a3d", icon: "star" },
+  { id: "custom", label: "Kişiye Özel Figürler", color: "#8b5cf6", icon: "gift" },
+  { id: "home", label: "Ev Eşyaları", color: "#14b8a6", icon: "home" },
+  { id: "toys", label: "Oyuncaklar", color: "#ec4899", icon: "blocks" },
+  { id: "accessories", label: "Aksesuarlar", color: "#3b82f6", icon: "sliders" },
+  { id: "industrial", label: "Endüstriyel", color: "#06b6d4", icon: "gear" },
+  { id: "drone", label: "Drone", color: "#6366f1", icon: "drone" },
+  { id: "car", label: "Otomobil", color: "#ef4444", icon: "car" },
 ];
 
 export const PRODUCTS = [

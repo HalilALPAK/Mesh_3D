@@ -1,10 +1,11 @@
 // Kardem3D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=8";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=8";
-import { mountLazyViewer } from "./viewer.js?v=8";
-import { addToCart, initCartUI } from "./cart.js?v=8";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=8";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=8";
+import { CONFIG, assetUrl } from "./config.js?v=9";
+import { icon } from "./icons.js?v=9";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=9";
+import { mountLazyViewer } from "./viewer.js?v=9";
+import { addToCart, initCartUI } from "./cart.js?v=9";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=9";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=9";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -24,8 +25,8 @@ function createMediaViewer(product, { autoRotate = true } = {}) {
       <img class="media-photo" alt="${product.name}" />
       ${hasModel ? '<span class="media-badge">3D</span>' : ""}
     </div>
-    <button type="button" class="media-arrow media-arrow-left" aria-label="Önceki görünüm">‹</button>
-    <button type="button" class="media-arrow media-arrow-right" aria-label="Sonraki görünüm">›</button>
+    <button type="button" class="media-arrow media-arrow-left" aria-label="Önceki görünüm">${icon("chevronLeft")}</button>
+    <button type="button" class="media-arrow media-arrow-right" aria-label="Sonraki görünüm">${icon("chevronRight")}</button>
     <div class="media-dots"></div>
   `;
 
@@ -177,7 +178,7 @@ function renderCategorySections() {
     section.id = `cat-${cat.id}`;
 
     const heading = document.createElement("h2");
-    heading.textContent = cat.icon ? `${cat.icon} ${cat.label}` : cat.label;
+    heading.innerHTML = cat.icon ? `${icon(cat.icon, "cat-icon")}<span>${cat.label}</span>` : cat.label;
     if (cat.color) heading.style.setProperty("--cat-color", cat.color);
     section.appendChild(heading);
 
@@ -198,7 +199,7 @@ function renderCategoryNav() {
     const pill = document.createElement("button");
     pill.type = "button";
     pill.className = "category-pill";
-    pill.textContent = cat.icon ? `${cat.icon} ${cat.label}` : cat.label;
+    pill.innerHTML = cat.icon ? `${icon(cat.icon, "cat-icon")}<span>${cat.label}</span>` : cat.label;
     if (cat.color) pill.style.setProperty("--cat-color", cat.color);
     pill.addEventListener("click", () => {
       const target = document.getElementById(`cat-${cat.id}`);
@@ -486,10 +487,10 @@ function initCustomOrderForm() {
         img.alt = file.name;
         box.appendChild(img);
       } else {
-        const icon = document.createElement("span");
-        icon.className = "file-thumb-icon";
-        icon.textContent = "🧊";
-        box.appendChild(icon);
+        const iconEl = document.createElement("span");
+        iconEl.className = "file-thumb-icon";
+        iconEl.innerHTML = icon("cube");
+        box.appendChild(iconEl);
         const ext = document.createElement("span");
         ext.className = "file-thumb-ext";
         ext.textContent = extensionOf(file.name);
@@ -500,7 +501,7 @@ function initCustomOrderForm() {
       removeBtn.type = "button";
       removeBtn.className = "file-thumb-remove";
       removeBtn.setAttribute("aria-label", "Dosyayı kaldır");
-      removeBtn.textContent = "✕";
+      removeBtn.innerHTML = icon("close");
       removeBtn.addEventListener("click", () => {
         const remaining = [...fileInput.files].filter((_, i) => i !== index);
         setFiles(remaining);
