@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=11" />
+<link rel="stylesheet" href="css/style.css?v=12" />
 <script type="importmap">
 {
   "imports": {
@@ -76,6 +76,26 @@
         <button class="btn btn-outline" id="hero-detail-btn">İncele</button>
       </div>
       <p class="hero-hint" id="hero-hint">Modeli fareyle / parmağınızla sürükleyerek her yönden inceleyebilirsiniz.</p>
+    </div>
+  </section>
+
+  <!-- ===== NEDEN KARDEM3D (güven/özellik şeridi) ===== -->
+  <section class="trust-strip" id="trust-strip">
+    <div class="trust-item">
+      <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.8L21 9.5l-4.5 4.2 1.2 6.1L12 16.9l-5.7 2.9 1.2-6.1L3 9.5l6.4-.7z"/></svg></span>
+      <div><strong>Kişiye Özel Tasarım</strong><span>Fotoğrafınızdan ya da fikrinizden size özel model üretiyoruz.</span></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.3 2.3L16 9.8"/></svg></span>
+      <div><strong>Katman Katman Kalite</strong><span>Her ürün, dayanıklı malzemeyle özenle basılır ve kontrol edilir.</span></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="13" height="8" rx="1"/><path d="M15 11h4l3 3v2h-7z"/><circle cx="7" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg></span>
+      <div><strong>Türkiye Geneli Kargo</strong><span>1000₺ ve üzeri siparişlerde kargo bizden.</span></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="6"/><polygon points="8,17 8,21 13,17"/><circle cx="9" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span>
+      <div><strong>WhatsApp'tan Kolay Sipariş</strong><span>Sepetiniz tek dokunuşla WhatsApp'a düşer.</span></div>
     </div>
   </section>
 
@@ -188,9 +208,32 @@
 </a>
 
 <footer class="site-footer">
-  <p>© <span id="footer-year"></span> Kardem3D — Tüm ürünler talebe göre 3D baskı ile üretilir.</p>
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <span class="logo">Kardem<span>3D</span></span>
+      <p>Fotoğrafınızdan ya da fikrinizden yola çıkarak size özel figürler, anahtarlıklar ve ev eşyaları üretiyoruz. Her ürün talebe göre 3D baskı ile hazırlanır.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Kategoriler</h3>
+      <a href="#cat-custom">Kişiye Özel Figürler</a>
+      <a href="#cat-toys">Oyuncaklar</a>
+      <a href="#cat-accessories">Aksesuarlar</a>
+      <a href="#cat-home">Ev Eşyaları</a>
+    </div>
+    <div class="footer-col">
+      <h3>İletişim</h3>
+      <a id="footer-whatsapp" href="#" target="_blank" rel="noopener">
+        <span class="wa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="6"/><polygon points="8,17 8,21 13,17"/><circle cx="9" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1.15" fill="currentColor" stroke="none"/></svg></span>
+        WhatsApp'tan Yaz
+      </a>
+      <a href="#custom-order">Özel Model Gönder</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© <span id="footer-year"></span> Kardem3D — Tüm ürünler talebe göre 3D baskı ile üretilir.</p>
+  </div>
 </footer>
 
-<script type="module" src="js/main.js?v=11"></script>
+<script type="module" src="js/main.js?v=12"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 // Kardem3D - sepet durumu ve arayüzü
-import { getCart, saveCart } from "./storage.js?v=11";
-import { getProductById, getUnitPrice } from "./products.js?v=11";
-import { CONFIG, assetUrl } from "./config.js?v=11";
-import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=11";
-import { icon } from "./icons.js?v=11";
+import { getCart, saveCart } from "./storage.js?v=12";
+import { getProductById, getUnitPrice } from "./products.js?v=12";
+import { CONFIG, assetUrl } from "./config.js?v=12";
+import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=12";
+import { icon } from "./icons.js?v=12";
 
 let cart = getCart(); // [{ productId, qty }]
 const listeners = new Set();

@@ -146,7 +146,8 @@ h1, h2, h3 {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 130%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1.2px) 0 0/18px 18px,
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 130%);
   color: #fff;
   box-shadow: var(--shadow);
 }
@@ -304,6 +305,56 @@ h1, h2, h3 {
   max-width: 52ch;
 }
 
+/* ===== GÜVEN / ÖZELLİK ŞERİDİ ===== */
+.trust-strip {
+  max-width: 1240px;
+  margin: 34px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s var(--ease-bounce), box-shadow 0.2s ease;
+}
+.trust-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.trust-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-icon svg { width: 20px; height: 20px; }
+.trust-item strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.trust-item span { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+
+@media (max-width: 860px) {
+  .trust-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .trust-strip { grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
+  .trust-item { padding: 12px; }
+}
+
 /* ===== HERO ===== */
 .hero {
   max-width: 1240px;
@@ -417,7 +468,9 @@ h1, h2, h3 {
   height: 100%;
   object-fit: cover;
   display: none;
+  transition: transform 0.35s ease;
 }
+.product-card:hover .media-photo { transform: scale(1.06); }
 
 /* 3D <-> fotoğraf geçişinde oynatılan "dönüşüm" efekti */
 .media-stage.transforming {
@@ -499,14 +552,12 @@ h1, h2, h3 {
 .product-section {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 30px 20px 10px;
+  padding: 44px 20px 10px;
 }
 .product-section h2 {
   color: var(--navy);
-  font-size: 1.4rem;
-  margin-bottom: 18px;
-  border-left: 5px solid var(--cat-color, var(--accent));
-  padding-left: 12px;
+  font-size: 1.55rem;
+  margin-bottom: 22px;
   display: flex;
   align-items: center;
 }
@@ -514,7 +565,13 @@ h1, h2, h3 {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  color: var(--cat-color, var(--accent));
+  flex-shrink: 0;
+  color: #fff;
+  background: var(--cat-color, var(--accent));
+  border-radius: 10px;
+  padding: 7px;
+  box-sizing: content-box;
+  transform: rotate(-4deg);
 }
 
 .product-grid {
@@ -945,10 +1002,48 @@ h1, h2, h3 {
 
 /* ===== FOOTER ===== */
 .site-footer {
+  background: var(--navy-light);
+  color: #d9cdbe;
+  padding: 44px 20px 0;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 30px;
+}
+.footer-col h3 {
+  font-family: var(--font-heading);
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+}
+.footer-col a {
+  display: block;
+  color: #d9cdbe;
+  text-decoration: none;
+  font-size: 0.86rem;
+  padding: 5px 0;
+  transition: color 0.15s ease;
+}
+.footer-col a:hover { color: var(--accent); }
+.footer-col a .wa-icon { margin-right: 6px; color: var(--whatsapp); }
+.footer-brand .logo { pointer-events: none; margin-bottom: 10px; display: inline-block; }
+.footer-brand p { font-size: 0.85rem; line-height: 1.6; max-width: 40ch; margin: 0; color: #c3b6a5; }
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   text-align: center;
-  padding: 26px 20px 40px;
-  color: var(--text-muted);
-  font-size: 0.82rem;
+  padding: 16px 20px 26px;
+  font-size: 0.78rem;
+  color: #b3a593;
+}
+.footer-bottom p { margin: 0; }
+
+@media (max-width: 700px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 }
 
 /* ===== RESPONSIVE ===== */

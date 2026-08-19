@@ -1,11 +1,11 @@
 // Kardem3D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=11";
-import { icon } from "./icons.js?v=11";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=11";
-import { mountLazyViewer } from "./viewer.js?v=11";
-import { addToCart, initCartUI } from "./cart.js?v=11";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=11";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=11";
+import { CONFIG, assetUrl } from "./config.js?v=12";
+import { icon } from "./icons.js?v=12";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=12";
+import { mountLazyViewer } from "./viewer.js?v=12";
+import { addToCart, initCartUI } from "./cart.js?v=12";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=12";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=12";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -544,8 +544,10 @@ function initCustomOrderForm() {
 // Genel
 // ---------------------------------------------------------------------------
 function initFloatingWhatsApp() {
-  const btn = document.getElementById("whatsapp-float");
-  btn.href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(CONFIG.DEFAULT_WHATSAPP_GREETING)}`;
+  const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(CONFIG.DEFAULT_WHATSAPP_GREETING)}`;
+  document.getElementById("whatsapp-float").href = url;
+  const footerLink = document.getElementById("footer-whatsapp");
+  if (footerLink) footerLink.href = url;
 }
 
 function initModalClose() {
