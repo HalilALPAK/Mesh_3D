@@ -1,5 +1,5 @@
 // Kardem3D - ürün yorumları ve puanlama
-import { getReviewsFor, addReview } from "./storage.js?v=10";
+import { getReviewsFor, addReview } from "./storage.js?v=11";
 
 // Ürünün "seed" (başlangıç) puanı ile kullanıcıların taraycıda eklediği
 // gerçek yorumları birleştirerek ağırlıklı ortalama puan döndürür.
