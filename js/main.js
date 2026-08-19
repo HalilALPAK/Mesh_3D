@@ -1,10 +1,10 @@
 // Kardem3D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=7";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=7";
-import { mountLazyViewer } from "./viewer.js?v=7";
-import { addToCart, initCartUI } from "./cart.js?v=7";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=7";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=7";
+import { CONFIG, assetUrl } from "./config.js?v=8";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=8";
+import { mountLazyViewer } from "./viewer.js?v=8";
+import { addToCart, initCartUI } from "./cart.js?v=8";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=8";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=8";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -115,6 +115,8 @@ function createMediaViewer(product, { autoRotate = true } = {}) {
 function createProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";
+  const cat = CATEGORIES.find((c) => c.id === product.category);
+  if (cat && cat.color) card.style.setProperty("--cat-color", cat.color);
 
   const media = createMediaViewer(product, { autoRotate: true });
 
@@ -175,7 +177,8 @@ function renderCategorySections() {
     section.id = `cat-${cat.id}`;
 
     const heading = document.createElement("h2");
-    heading.textContent = cat.label;
+    heading.textContent = cat.icon ? `${cat.icon} ${cat.label}` : cat.label;
+    if (cat.color) heading.style.setProperty("--cat-color", cat.color);
     section.appendChild(heading);
 
     const grid = document.createElement("div");
@@ -195,7 +198,8 @@ function renderCategoryNav() {
     const pill = document.createElement("button");
     pill.type = "button";
     pill.className = "category-pill";
-    pill.textContent = cat.label;
+    pill.textContent = cat.icon ? `${cat.icon} ${cat.label}` : cat.label;
+    if (cat.color) pill.style.setProperty("--cat-color", cat.color);
     pill.addEventListener("click", () => {
       const target = document.getElementById(`cat-${cat.id}`);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });

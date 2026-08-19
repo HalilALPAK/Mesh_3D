@@ -6,15 +6,17 @@
 // photos: ürünün gerçek basılmış hâlinin fotoğrafları (arrayin ilk elemanı kapak fotoğrafı olur).
 // priceTiers: adete göre değişen fiyat kademeleri; sıralı ve artan minQty bekler.
 
+// color: kategori sekmesinin/başlığının rengi (hex). Her kategori kendi rengiyle
+// ayrılsın diye verildi; belirtilmezse marka turuncusu kullanılır.
 export const CATEGORIES = [
-  { id: "featured", label: "Öne Çıkanlar" },
-  { id: "custom", label: "Kişiye Özel Figürler" },
-  { id: "home", label: "Ev Eşyaları" },
-  { id: "toys", label: "Oyuncaklar" },
-  { id: "accessories", label: "Aksesuarlar" },
-  { id: "industrial", label: "Endüstriyel" },
-  { id: "drone", label: "Drone" },
-  { id: "car", label: "Otomobil" },
+  { id: "featured", label: "Öne Çıkanlar", color: "#ff6a3d", icon: "⭐" },
+  { id: "custom", label: "Kişiye Özel Figürler", color: "#8b5cf6", icon: "🎁" },
+  { id: "home", label: "Ev Eşyaları", color: "#14b8a6", icon: "🏠" },
+  { id: "toys", label: "Oyuncaklar", color: "#ec4899", icon: "🧸" },
+  { id: "accessories", label: "Aksesuarlar", color: "#3b82f6", icon: "🔧" },
+  { id: "industrial", label: "Endüstriyel", color: "#06b6d4", icon: "⚙️" },
+  { id: "drone", label: "Drone", color: "#6366f1", icon: "🚁" },
+  { id: "car", label: "Otomobil", color: "#ef4444", icon: "🚗" },
 ];
 
 export const PRODUCTS = [
@@ -273,6 +275,127 @@ export const PRODUCTS = [
     ],
     ratingSeed: 4.6,
     reviewCountSeed: 5,
+  },
+  {
+    id: "deadpool_stand",
+    name: "Deadpool Kulaklık Standı",
+    category: "accessories",
+    featured: true,
+    description:
+      "Deadpool maskesi formunda, masaüstünde yer kaplamayan kulaklık standı. Oyun/bilgisayar masaları için eğlenceli ve dayanıklı bir aksesuar.",
+    photos: [
+      "assets/images/products/deadpool-stand-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 599 },
+      { minQty: 3, price: 549 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 8,
+  },
+  {
+    id: "coffee_friends",
+    name: "Kahve Dostları Figür Seti",
+    category: "home",
+    featured: true,
+    description:
+      "Kahve makinesi, fincan, kahve çekirdeği ve termos karakterlerinden oluşan, kenara oturan minik dekor figürleri. Mutfak tezgahı veya raf kenarları için sevimli bir detay.",
+    photos: [
+      "assets/images/products/coffee-friends-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 39 },
+      { minQty: 4, price: 35 },
+      { minQty: 10, price: 29 },
+    ],
+    ratingSeed: 4.8,
+    reviewCountSeed: 19,
+  },
+  {
+    id: "thor_hammer",
+    name: "Thor'un Çekici (Mjolnir)",
+    category: "toys",
+    featured: true,
+    description:
+      "Standlı, gerçekçi detaylara sahip Mjolnir replikası. Koleksiyoncular ve süper kahraman hayranları için etkileyici bir masaüstü parçası.",
+    photos: [
+      "assets/images/products/thor-hammer-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 699 },
+      { minQty: 3, price: 649 },
+    ],
+    ratingSeed: 5.0,
+    reviewCountSeed: 6,
+  },
+  {
+    id: "besiktas_frame",
+    name: "Beşiktaş Aydınlatmalı Forma Çerçevesi",
+    category: "home",
+    featured: true,
+    description:
+      "LED aydınlatmalı forma temalı duvar çerçevesi; takım, oyuncu adı ve imza baskısı ile kişiselleştirilebilir. Taraftarlar için özel bir hediye/dekor parçası.",
+    photos: [
+      "assets/images/products/besiktas-frame-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 999 },
+      { minQty: 3, price: 929 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 11,
+  },
+  {
+    id: "baby_yoda",
+    name: "Baby Yoda (Grogu) Figürü",
+    category: "toys",
+    featured: true,
+    description:
+      "El boyaması detaylarla üretilen, standlı Baby Yoda koleksiyon figürü. Star Wars severler için sevimli bir raf/masa dekoru.",
+    photos: [
+      "assets/images/products/baby-yoda-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 399 },
+      { minQty: 3, price: 369 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 14,
+  },
+  {
+    id: "car_figure",
+    name: "Minyatür Araba Figürü",
+    category: "car",
+    featured: false,
+    description:
+      "Gerçek otomobilin küçük ölçekli, detaylı baskı figürü. Anahtarlık, çanta süsü ya da koleksiyon parçası olarak kullanılabilir; talebe göre farklı araç modelleri üretilebilir.",
+    photos: [
+      "assets/images/products/car-figure-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 199 },
+      { minQty: 3, price: 179 },
+      { minQty: 10, price: 149 },
+    ],
+    ratingSeed: 4.7,
+    reviewCountSeed: 10,
+  },
+  {
+    id: "dragon_pair",
+    name: "İkiz Ejderha Figürü (Dişsiz & Işık Öfkesi)",
+    category: "toys",
+    featured: true,
+    description:
+      "Kanatları hareketli, siyah ve beyaz renk seçenekli ejderha çifti figürü. Tek tek ya da çift set olarak sipariş edilebilir.",
+    photos: [
+      "assets/images/products/dragon-pair-1.jpg",
+    ],
+    priceTiers: [
+      { minQty: 1, price: 399 },
+      { minQty: 2, price: 369 },
+    ],
+    ratingSeed: 4.9,
+    reviewCountSeed: 17,
   },
 ];
 

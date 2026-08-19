@@ -93,7 +93,7 @@ button { font-family: inherit; cursor: pointer; }
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--navy);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 130%);
   color: #fff;
   box-shadow: var(--shadow);
 }
@@ -179,16 +179,23 @@ button { font-family: inherit; cursor: pointer; }
   scrollbar-width: thin;
 }
 .category-pill {
-  background: rgba(255,255,255,0.1);
+  background: var(--cat-color, rgba(255, 255, 255, 0.14));
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   padding: 7px 16px;
   font-size: 0.85rem;
+  font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
 }
-.category-pill:hover { background: var(--accent); border-color: var(--accent); }
+.category-pill:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
 
 /* ===== KARGO BİLGİ ŞERİDİ ===== */
 .shipping-banner {
@@ -410,7 +417,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--navy);
   font-size: 1.4rem;
   margin-bottom: 18px;
-  border-left: 5px solid var(--accent);
+  border-left: 5px solid var(--cat-color, var(--accent));
   padding-left: 12px;
 }
 
@@ -424,6 +431,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--card-bg);
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
+  border-top: 4px solid var(--cat-color, var(--accent));
   box-shadow: var(--shadow);
   overflow: hidden;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;

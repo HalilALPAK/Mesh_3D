@@ -106,7 +106,11 @@ yeterli.
 dönen banner alanında gösterilir (yalnızca bir üründe kullanın).
 
 Kategori listesini (etiketleri) değiştirmek isterseniz `js/products.js`
-dosyasının başındaki `CATEGORIES` dizisini düzenleyin.
+dosyasının başındaki `CATEGORIES` dizisini düzenleyin. Her kategorinin kendi
+rengi (`color`, hex kod) ve emojisi (`icon`) var — kategori sekmesinde, ürün
+kartının üst şeridinde ve bölüm başlığında otomatik kullanılır; siteyi canlı
+ve renkli tutan asıl unsur bu. Yeni kategori eklerken bu iki alanı da vermeniz
+önerilir.
 
 Bir ürünün 3D önizlemesine özel bir renk vermek isterseniz `color` alanını
 onaltılık (hex) renk kodu olarak ekleyin, örn. `color: 0xe8b88f,` (belirtilmezse
