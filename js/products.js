@@ -1,4 +1,4 @@
-// ALPOTECH - ürün kataloğu
+// Kardem3D - ürün kataloğu
 // Yeni ürün eklemek için bu diziye yeni bir nesne ekleyin.
 // model.type: "stl", "obj" veya "glb"/"gltf" olabilir (obj ise model.mtl ile malzeme dosyası da verebilirsiniz).
 // model alanını tamamen kaldırırsanız (ya da null yaparsanız) ürün sadece fotoğraflarla

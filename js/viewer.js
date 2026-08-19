@@ -1,4 +1,4 @@
-// ALPOTECH - yeniden kullanılabilir Three.js STL/OBJ/GLB 3D görüntüleyici
+// Kardem3D - yeniden kullanılabilir Three.js STL/OBJ/GLB 3D görüntüleyici
 import * as THREE from "three";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";

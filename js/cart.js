@@ -1,8 +1,8 @@
-// ALPOTECH - sepet durumu ve arayüzü
-import { getCart, saveCart } from "./storage.js?v=6";
-import { getProductById, getUnitPrice } from "./products.js?v=6";
-import { CONFIG, assetUrl } from "./config.js?v=6";
-import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=6";
+// Kardem3D - sepet durumu ve arayüzü
+import { getCart, saveCart } from "./storage.js?v=7";
+import { getProductById, getUnitPrice } from "./products.js?v=7";
+import { CONFIG, assetUrl } from "./config.js?v=7";
+import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=7";
 
 let cart = getCart(); // [{ productId, qty }]
 const listeners = new Set();
@@ -66,14 +66,18 @@ export function getCartDetails() {
     .filter(Boolean);
 
   const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
-  const totalPrice = items.reduce((sum, i) => sum + i.lineTotal, 0);
-  return { items, totalQty, totalPrice };
+  const subtotal = items.reduce((sum, i) => sum + i.lineTotal, 0);
+  const freeShipping = items.length > 0 && subtotal >= CONFIG.FREE_SHIPPING_THRESHOLD;
+  const shipping = items.length === 0 || freeShipping ? 0 : CONFIG.SHIPPING_FEE;
+  const grandTotal = subtotal + shipping;
+  const remainingForFreeShipping = Math.max(0, CONFIG.FREE_SHIPPING_THRESHOLD - subtotal);
+  return { items, totalQty, subtotal, shipping, freeShipping, grandTotal, remainingForFreeShipping };
 }
 
 export function checkoutViaWhatsApp() {
-  const { items } = getCartDetails();
+  const { items, subtotal, shipping, grandTotal } = getCartDetails();
   if (!items.length) return false;
-  const message = buildCartMessage(items);
+  const message = buildCartMessage(items, { subtotal, shipping, grandTotal });
   openWhatsApp(message);
   return true;
 }
@@ -85,13 +89,16 @@ export function initCartUI() {
   const overlay = document.getElementById("cart-overlay");
   const itemsEl = document.getElementById("cart-items");
   const totalEl = document.getElementById("cart-total");
+  const subtotalEl = document.getElementById("cart-subtotal");
+  const shippingEl = document.getElementById("cart-shipping");
+  const freeShippingHintEl = document.getElementById("free-shipping-hint");
   const emptyEl = document.getElementById("cart-empty");
   const confirmBtn = document.getElementById("cart-confirm-btn");
   const openBtn = document.getElementById("cart-open-btn");
   const closeBtn = document.getElementById("cart-close-btn");
 
   function render(details) {
-    const { items, totalQty, totalPrice } = details;
+    const { items, totalQty, subtotal, shipping, freeShipping, grandTotal, remainingForFreeShipping } = details;
     badge.textContent = totalQty;
     badge.style.display = totalQty > 0 ? "flex" : "none";
 
@@ -119,7 +126,26 @@ export function initCartUI() {
       itemsEl.appendChild(row);
     });
 
-    totalEl.textContent = `${totalPrice}${CONFIG.CURRENCY}`;
+    subtotalEl.textContent = `${subtotal}${CONFIG.CURRENCY}`;
+    totalEl.textContent = `${grandTotal}${CONFIG.CURRENCY}`;
+
+    if (freeShipping) {
+      shippingEl.innerHTML = `<span class="shipping-strike">${CONFIG.SHIPPING_FEE}${CONFIG.CURRENCY}</span> <span class="shipping-free">Ücretsiz</span>`;
+    } else {
+      shippingEl.textContent = items.length ? `${shipping}${CONFIG.CURRENCY}` : `—`;
+    }
+
+    if (!items.length) {
+      freeShippingHintEl.hidden = true;
+    } else if (freeShipping) {
+      freeShippingHintEl.hidden = false;
+      freeShippingHintEl.className = "free-shipping-hint free-shipping-hint-success";
+      freeShippingHintEl.textContent = "🎉 Kargonuz ücretsiz!";
+    } else {
+      freeShippingHintEl.hidden = false;
+      freeShippingHintEl.className = "free-shipping-hint";
+      freeShippingHintEl.textContent = `Sepete ${remainingForFreeShipping}${CONFIG.CURRENCY} daha ürün ekleyin, kargo bedava olsun!`;
+    }
   }
 
   itemsEl.addEventListener("click", (e) => {

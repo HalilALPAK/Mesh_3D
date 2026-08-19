@@ -1,10 +1,10 @@
-// ALPOTECH - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=6";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=6";
-import { mountLazyViewer } from "./viewer.js?v=6";
-import { addToCart, initCartUI } from "./cart.js?v=6";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=6";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=6";
+// Kardem3D - ana uygulama mantığı
+import { CONFIG, assetUrl } from "./config.js?v=7";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=7";
+import { mountLazyViewer } from "./viewer.js?v=7";
+import { addToCart, initCartUI } from "./cart.js?v=7";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=7";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=7";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında

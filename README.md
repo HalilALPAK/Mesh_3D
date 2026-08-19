@@ -1,4 +1,4 @@
-# ALPOTECH — 3D Baskı Mağazası Sitesi
+# Kardem3D — 3D Baskı Mağazası Sitesi
 
 Saf HTML + CSS + JavaScript (Three.js CDN üzerinden) ile hazırlanmış, build aracı
 gerektirmeyen bir site. `index.html` dosyasını açan herhangi bir statik hosting'e
@@ -46,6 +46,19 @@ WHATSAPP_NUMBER: "905424433025",
 Numara değişirse aynı formatta buradan güncelleyin. Bu numara hem sepeti
 onaylama, hem "kendi modelini gönder" formu, hem de sağ alt köşedeki sabit
 WhatsApp butonu için kullanılır.
+
+### Kargo ücreti
+
+Aynı dosyada (`js/config.js`) kargo eşiği ve ücreti ayarlanır:
+
+```js
+FREE_SHIPPING_THRESHOLD: 1000, // bu tutar ve üzeri sepetlerde kargo bedava
+SHIPPING_FEE: 150,             // altındaki sepetlere eklenen kargo ücreti
+```
+
+Bu değerler; üst kısımdaki yeşil bilgi şeridinde, sepet çekmecesindeki
+Ara Toplam/Kargo/Genel Toplam satırlarında (kargo bedavaysa 150₺ üstü çizilip
+"Ücretsiz" yazılır) ve WhatsApp'a giden sipariş mesajında otomatik kullanılır.
 
 ## 2) Ürünlerinizi ekleyin / mevcutları değiştirin
 

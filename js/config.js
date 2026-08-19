@@ -1,11 +1,15 @@
-// ALPOTECH - genel site ayarları
+// Kardem3D - genel site ayarları
 // WhatsApp numarasını ülke koduyla, başında + veya 0 olmadan yazın (örn. Türkiye: 905XXXXXXXXX)
 export const CONFIG = {
-  STORE_NAME: "ALPOTECH",
+  STORE_NAME: "Kardem3D",
   WHATSAPP_NUMBER: "905424433025",
   CURRENCY: "₺",
   DEFAULT_WHATSAPP_GREETING:
-    "Merhaba ALPOTECH! Ürünleriniz hakkında bilgi almak istiyorum.",
+    "Merhaba Kardem3D! Ürünleriniz hakkında bilgi almak istiyorum.",
+  // Sepet ara toplamı bu tutara ulaşınca kargo bedava olur; altındaysa
+  // SHIPPING_FEE eklenir.
+  FREE_SHIPPING_THRESHOLD: 1000,
+  SHIPPING_FEE: 150,
 };
 
 // GitHub Pages her dosyayı sadece 10 dakika önbellekte tutuyor (Cache-Control:

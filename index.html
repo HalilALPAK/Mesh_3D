@@ -6,9 +6,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>ALPOTECH — 3D Baskı Mağazası</title>
+<title>Kardem3D — 3D Baskı Mağazası</title>
 <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="css/style.css?v=6" />
+<link rel="stylesheet" href="css/style.css?v=7" />
 <script type="importmap">
 {
   "imports": {
@@ -23,7 +23,7 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#top" class="logo">ALPO<span>TECH</span></a>
+    <a href="#top" class="logo">Kardem<span>3D</span></a>
 
     <div class="search-bar">
       <input id="search-input" type="text" placeholder="Ürün ara... (örn. vazo, drone, oyuncak)" autocomplete="off" />
@@ -41,6 +41,11 @@
 
   <div class="category-nav" id="category-nav"></div>
 </header>
+
+<!-- ===== KARGO BİLGİ ŞERİDİ ===== -->
+<div class="shipping-banner">
+  🚚 <strong>1000₺ ve üzeri</strong> siparişlerde kargo bedava — altındaki siparişlerde <strong>150₺</strong> kargo ücreti eklenir.
+</div>
 
 <main id="top">
 
@@ -146,8 +151,17 @@
   <div class="cart-items" id="cart-items"></div>
   <p class="empty-state" id="cart-empty">Sepetiniz boş.</p>
   <div class="cart-drawer-foot">
-    <div class="cart-total-row">
-      <span>Toplam</span>
+    <p class="free-shipping-hint" id="free-shipping-hint"></p>
+    <div class="cart-total-row cart-subtotal-row">
+      <span>Ara Toplam</span>
+      <span id="cart-subtotal">0₺</span>
+    </div>
+    <div class="cart-total-row cart-shipping-row">
+      <span>Kargo</span>
+      <span id="cart-shipping"></span>
+    </div>
+    <div class="cart-total-row cart-grand-total-row">
+      <span>Genel Toplam</span>
       <strong id="cart-total">0₺</strong>
     </div>
     <button id="cart-confirm-btn" class="btn btn-whatsapp" disabled>
@@ -169,9 +183,9 @@
 </a>
 
 <footer class="site-footer">
-  <p>© <span id="footer-year"></span> ALPOTECH — Tüm ürünler talebe göre 3D baskı ile üretilir.</p>
+  <p>© <span id="footer-year"></span> Kardem3D — Tüm ürünler talebe göre 3D baskı ile üretilir.</p>
 </footer>
 
-<script type="module" src="js/main.js?v=6"></script>
+<script type="module" src="js/main.js?v=7"></script>
 </body>
 </html>
