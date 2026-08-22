@@ -1,11 +1,11 @@
 // TR33D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=13";
-import { icon } from "./icons.js?v=13";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice, loadProducts } from "./products.js?v=13";
-import { mountLazyViewer } from "./viewer.js?v=13";
-import { addToCart, initCartUI } from "./cart.js?v=13";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=13";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=13";
+import { CONFIG, assetUrl } from "./config.js?v=14";
+import { icon } from "./icons.js?v=14";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice, loadProducts } from "./products.js?v=14";
+import { mountLazyViewer } from "./viewer.js?v=14";
+import { addToCart, initCartUI } from "./cart.js?v=14";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=14";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=14";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında

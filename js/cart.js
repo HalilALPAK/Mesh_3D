@@ -1,9 +1,9 @@
 // TR33D - sepet durumu ve arayüzü
-import { getCart, saveCart } from "./storage.js?v=13";
-import { getProductById, getUnitPrice } from "./products.js?v=13";
-import { CONFIG, assetUrl } from "./config.js?v=13";
-import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=13";
-import { icon } from "./icons.js?v=13";
+import { getCart, saveCart } from "./storage.js?v=14";
+import { getProductById, getUnitPrice } from "./products.js?v=14";
+import { CONFIG, assetUrl } from "./config.js?v=14";
+import { openWhatsApp, buildCartMessage } from "./whatsapp.js?v=14";
+import { icon } from "./icons.js?v=14";
 
 let cart = getCart(); // [{ productId, qty }]
 const listeners = new Set();

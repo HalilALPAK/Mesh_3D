@@ -1,5 +1,5 @@
 // TR33D - WhatsApp entegrasyon yardımcıları
-import { CONFIG } from "./config.js?v=13";
+import { CONFIG } from "./config.js?v=14";
 
 export function openWhatsApp(message) {
   const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

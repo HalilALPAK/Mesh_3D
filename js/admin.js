@@ -8,7 +8,7 @@
 // (sayfanın kaynak kodu herkese açıktır). Gerçek yetki, GitHub erişim
 // anahtarındadır — anahtarı yalnızca siz bilirsiniz ve yalnızca bu tarayıcıda
 // saklanır.
-import { CATEGORIES } from "./products.js?v=13";
+import { CATEGORIES } from "./products.js?v=14";
 
 const ADMIN_PASSWORD = "TR33D";
 const REPO_OWNER = "HalilALPAK";
@@ -18,6 +18,12 @@ const PRODUCTS_PATH = "data/products.json";
 const IMAGES_DIR = "assets/images/products";
 const TOKEN_KEY = "tr33d_admin_gh_token";
 const GATE_KEY = "tr33d_admin_gate_ok";
+
+// Düzenleme sırasında hangi ürünün üzerinde çalışıldığını ve hangi mevcut
+// görsellerin kaldırılmak üzere işaretlendiğini tutan modül durumu.
+let editingProduct = null;
+let removedPhotos = [];
+let lastLoadedProducts = [];
 
 // ---------------------------------------------------------------------------
 // Şifre ekranı
@@ -137,6 +143,15 @@ async function readProducts() {
   return { products: JSON.parse(base64ToUtf8(file.content)), sha: file.sha };
 }
 
+async function deletePhotoBestEffort(path, productName) {
+  try {
+    const imgFile = await getFile(path);
+    await deleteFile(path, imgFile.sha, `Admin: "${productName}" görseli silindi`);
+  } catch (e) {
+    /* görsel silinemezse ana işlemi bozma */
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Yardımcılar: slug üretimi
 // ---------------------------------------------------------------------------
@@ -243,15 +258,24 @@ function setAddStatus(message, isError = false) {
   el.classList.toggle("admin-status-error", isError);
 }
 
+// ---------------------------------------------------------------------------
+// Ekle / Düzenle formu (ortak form, iki modda çalışır)
+// ---------------------------------------------------------------------------
 function initAddProductForm() {
   const form = document.getElementById("add-product-form");
   const uploadBtn = document.getElementById("upload-btn");
+  const cancelBtn = document.getElementById("cancel-edit-btn");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     uploadBtn.disabled = true;
     try {
-      await handleAddProduct(form);
+      if (editingProduct) {
+        await handleUpdateProduct(form);
+      } else {
+        await handleAddProduct(form);
+      }
+      exitEditMode();
       form.reset();
       initTierRows();
     } catch (err) {
@@ -260,6 +284,93 @@ function initAddProductForm() {
       uploadBtn.disabled = false;
     }
   });
+
+  cancelBtn.addEventListener("click", () => {
+    exitEditMode();
+    form.reset();
+    initTierRows();
+    setAddStatus("");
+  });
+}
+
+function startEdit(product) {
+  editingProduct = product;
+  removedPhotos = [];
+
+  document.getElementById("form-heading").textContent = `"${product.name}" Ürününü Düzenle`;
+  document.getElementById("upload-btn").textContent = "Güncelle";
+  document.getElementById("cancel-edit-btn").hidden = false;
+  document.getElementById("p-images-hint").textContent =
+    "İsterseniz ek fotoğraf seçin (mevcutlara eklenir). Boş bırakırsanız mevcut görseller aynen kalır.";
+
+  document.getElementById("p-name").value = product.name;
+  document.getElementById("p-category").value = product.category;
+  document.getElementById("p-desc").value = product.description;
+
+  const container = document.getElementById("tiers-container");
+  container.innerHTML = "";
+  (product.priceTiers || []).forEach((t) => addTierRow(t.minQty, t.price));
+  if (!container.children.length) addTierRow(1, "");
+
+  const visibility = product.isHero ? "hero" : product.featured ? "featured" : "";
+  document.querySelectorAll('input[name="visibility"]').forEach((r) => {
+    r.checked = r.value === visibility;
+  });
+
+  renderExistingPhotos(product);
+
+  document.getElementById("add-product-form").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function exitEditMode() {
+  editingProduct = null;
+  removedPhotos = [];
+  document.getElementById("form-heading").textContent = "Yeni Ürün Ekle";
+  document.getElementById("upload-btn").textContent = "Yükle";
+  document.getElementById("cancel-edit-btn").hidden = true;
+  document.getElementById("p-images-hint").textContent =
+    "Birden fazla fotoğraf seçebilirsiniz (ilk seçilen kapak fotoğrafı olur).";
+  document.getElementById("existing-photos-row").hidden = true;
+  document.getElementById("existing-photos").innerHTML = "";
+}
+
+function renderExistingPhotos(product) {
+  const row = document.getElementById("existing-photos-row");
+  const container = document.getElementById("existing-photos");
+  container.innerHTML = "";
+
+  (product.photos || []).forEach((path) => {
+    if (removedPhotos.includes(path)) return;
+    const thumb = document.createElement("div");
+    thumb.className = "admin-existing-thumb";
+    thumb.innerHTML = `
+      <img src="https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${path}" alt="" />
+      <button type="button" class="admin-existing-thumb-remove" aria-label="Görseli kaldır">✕</button>
+    `;
+    thumb.querySelector("button").addEventListener("click", () => {
+      removedPhotos.push(path);
+      renderExistingPhotos(product);
+    });
+    container.appendChild(thumb);
+  });
+
+  row.hidden = false;
+  if (!(product.photos || []).length || (product.photos || []).every((p) => removedPhotos.includes(p))) {
+    container.innerHTML = '<p class="admin-field-hint">Bu üründe kalan görsel yok — kaydetmeden önce en az bir yeni görsel seçin.</p>';
+  }
+}
+
+async function uploadImages(files, slug) {
+  const photoPaths = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+    const path = `${IMAGES_DIR}/${slug}-${Date.now().toString(36)}-${i + 1}.${ext}`;
+    const base64 = await fileToBase64(file);
+    await putFile(path, base64, undefined, `Admin: görsel eklendi (${slug})`);
+    photoPaths.push(path);
+  }
+  return photoPaths;
 }
 
 async function handleAddProduct(form) {
@@ -277,15 +388,7 @@ async function handleAddProduct(form) {
   const slug = `${slugify(name)}_${Date.now().toString(36)}`;
 
   setAddStatus("Görseller yükleniyor...");
-  const photoPaths = [];
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-    const path = `${IMAGES_DIR}/${slug}-${i + 1}.${ext}`;
-    const base64 = await fileToBase64(file);
-    await putFile(path, base64, undefined, `Admin: "${name}" görseli eklendi`);
-    photoPaths.push(path);
-  }
+  const photoPaths = await uploadImages(files, slug);
 
   setAddStatus("Ürün kataloğu güncelleniyor...");
   const { products, sha } = await readProducts();
@@ -318,6 +421,62 @@ async function handleAddProduct(form) {
   await refreshProductList();
 }
 
+async function handleUpdateProduct(form) {
+  const name = document.getElementById("p-name").value.trim();
+  const category = document.getElementById("p-category").value;
+  const description = document.getElementById("p-desc").value.trim();
+  const files = [...document.getElementById("p-images").files];
+  const tiers = readTiers();
+  const visibility = form.querySelector('input[name="visibility"]:checked')?.value;
+  const productId = editingProduct.id;
+  const originalPhotos = editingProduct.photos || [];
+  const keptPhotos = originalPhotos.filter((p) => !removedPhotos.includes(p));
+
+  if (!name || !category || !description) throw new Error("Lütfen tüm alanları doldurun.");
+  if (tiers.length === 0) throw new Error("En az bir fiyat kademesi girin.");
+  if (keptPhotos.length === 0 && files.length === 0) throw new Error("Ürünün en az bir görseli olmalı.");
+
+  let newPhotoPaths = [];
+  if (files.length) {
+    setAddStatus("Yeni görseller yükleniyor...");
+    newPhotoPaths = await uploadImages(files, slugify(name));
+  }
+
+  setAddStatus("Ürün kataloğu güncelleniyor...");
+  const { products, sha } = await readProducts();
+
+  if (visibility === "hero") {
+    products.forEach((p) => {
+      if (p.id !== productId && p.isHero) delete p.isHero;
+    });
+  }
+
+  const target = products.find((p) => p.id === productId);
+  if (!target) throw new Error("Ürün depoda bulunamadı (başka biri silmiş olabilir).");
+
+  target.name = name;
+  target.category = category;
+  target.description = description;
+  target.priceTiers = tiers;
+  target.photos = [...keptPhotos, ...newPhotoPaths];
+  target.featured = visibility === "featured" || visibility === "hero";
+  if (visibility === "hero") target.isHero = true;
+  else delete target.isHero;
+
+  const newContent = utf8ToBase64(JSON.stringify(products, null, 2) + "\n");
+  await putFile(PRODUCTS_PATH, newContent, sha, `Admin: "${name}" ürünü güncellendi`);
+
+  for (const path of removedPhotos) {
+    await deletePhotoBestEffort(path, name);
+  }
+
+  setAddStatus("Ürün güncellendi. Site birkaç dakika içinde güncellenecek.");
+  await refreshProductList();
+}
+
+// ---------------------------------------------------------------------------
+// Silme
+// ---------------------------------------------------------------------------
 async function handleDelete(product) {
   if (!confirm(`"${product.name}" ürününü silmek istediğinize emin misiniz?`)) return;
   const listEl = document.getElementById("product-list");
@@ -327,14 +486,14 @@ async function handleDelete(product) {
     const newContent = utf8ToBase64(JSON.stringify(remaining, null, 2) + "\n");
     await putFile(PRODUCTS_PATH, newContent, sha, `Admin: "${product.name}" ürünü silindi`);
 
-    // Görselleri silmeyi dene; başarısız olursa (dosya zaten yoksa vb.) yok say.
     for (const photoPath of product.photos || []) {
-      try {
-        const imgFile = await getFile(photoPath);
-        await deleteFile(photoPath, imgFile.sha, `Admin: "${product.name}" görseli silindi`);
-      } catch (e) {
-        /* görsel silinemezse ürün silme işlemini bozma */
-      }
+      await deletePhotoBestEffort(photoPath, product.name);
+    }
+
+    if (editingProduct && editingProduct.id === product.id) {
+      exitEditMode();
+      document.getElementById("add-product-form").reset();
+      initTierRows();
     }
 
     await refreshProductList();
@@ -345,6 +504,9 @@ async function handleDelete(product) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Liste
+// ---------------------------------------------------------------------------
 async function refreshProductList() {
   const listEl = document.getElementById("product-list");
   if (!getToken()) return;
@@ -352,6 +514,7 @@ async function refreshProductList() {
   listEl.innerHTML = '<p class="admin-hint">Yükleniyor...</p>';
   try {
     const { products } = await readProducts();
+    lastLoadedProducts = products;
     renderProductList(products);
   } catch (err) {
     listEl.innerHTML = `<p class="admin-status admin-status-error">Ürünler yüklenemedi: ${err.message}</p>`;
@@ -383,8 +546,12 @@ function renderProductList(products) {
         <span>${cat ? cat.label : p.category}${badge ? " · " + badge : ""}</span>
         <span>${fromPrice}</span>
       </div>
-      <button type="button" class="btn btn-outline admin-delete-btn">Sil</button>
+      <div class="admin-row-actions">
+        <button type="button" class="btn btn-outline admin-edit-btn">Düzenle</button>
+        <button type="button" class="btn btn-outline admin-delete-btn">Sil</button>
+      </div>
     `;
+    row.querySelector(".admin-edit-btn").addEventListener("click", () => startEdit(p));
     row.querySelector(".admin-delete-btn").addEventListener("click", (e) => {
       e.currentTarget.disabled = true;
       handleDelete(p);

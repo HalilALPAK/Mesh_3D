@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=13" />
-<link rel="stylesheet" href="css/admin.css?v=13" />
+<link rel="stylesheet" href="css/style.css?v=14" />
+<link rel="stylesheet" href="css/admin.css?v=14" />
 </head>
 <body class="admin-body">
 
@@ -55,12 +55,17 @@
     </section>
 
     <section class="admin-card">
-      <h2>Yeni Ürün Ekle</h2>
+      <h2 id="form-heading">Yeni Ürün Ekle</h2>
       <form id="add-product-form" class="admin-form">
+        <div class="admin-form-row" id="existing-photos-row" hidden>
+          <label>Mevcut Görseller</label>
+          <div id="existing-photos" class="admin-existing-photos"></div>
+          <span class="admin-field-hint">Kaldırmak istediğiniz görselin üzerindeki ✕'e basın. Kaydedince silinir.</span>
+        </div>
         <div class="admin-form-row">
-          <label for="p-images">Ürün Görseli</label>
-          <input type="file" id="p-images" accept="image/*" multiple required />
-          <span class="admin-field-hint">Birden fazla fotoğraf seçebilirsiniz (ilk seçilen kapak fotoğrafı olur).</span>
+          <label for="p-images" id="p-images-label">Ürün Görseli</label>
+          <input type="file" id="p-images" accept="image/*" multiple />
+          <span class="admin-field-hint" id="p-images-hint">Birden fazla fotoğraf seçebilirsiniz (ilk seçilen kapak fotoğrafı olur).</span>
         </div>
         <div class="admin-form-row">
           <label for="p-name">Ürün Adı</label>
@@ -88,6 +93,7 @@
           <span class="admin-field-hint">"En Öne Çıkar" seçilirse bu ürün ana sayfanın en üstünde büyük gösterilir (önceki büyük ürünün yerini alır). Hiçbiri seçilmezse ürün yalnızca kendi kategorisinde listelenir.</span>
         </div>
         <button type="submit" class="btn btn-primary btn-block" id="upload-btn">Yükle</button>
+        <button type="button" class="btn btn-outline btn-block" id="cancel-edit-btn" hidden>Düzenlemeyi İptal Et</button>
         <p class="admin-status" id="add-status"></p>
       </form>
     </section>
@@ -102,6 +108,6 @@
   </main>
 </div>
 
-<script type="module" src="js/admin.js?v=13"></script>
+<script type="module" src="js/admin.js?v=14"></script>
 </body>
 </html>
