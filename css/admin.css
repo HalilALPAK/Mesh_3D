@@ -1,0 +1,167 @@
+/* TR33D - admin paneli stilleri (css/style.css değişkenlerini kullanır) */
+
+.admin-body {
+  min-height: 100vh;
+}
+
+.admin-gate[hidden],
+.admin-panel[hidden] {
+  display: none !important;
+}
+
+/* ===== ŞİFRE EKRANI ===== */
+.admin-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 130%);
+}
+.admin-gate-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 36px 30px;
+  width: min(360px, 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.admin-gate-logo { justify-content: center; color: var(--navy); margin-bottom: 6px; }
+.admin-gate-logo span { color: var(--accent); }
+.admin-gate-card h1 { font-size: 1.3rem; margin: 0; color: var(--navy); }
+.admin-gate-card p { margin: 0; color: var(--text-muted); font-size: 0.88rem; }
+.admin-gate-card input {
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-family: inherit;
+  text-align: center;
+}
+.admin-gate-error { color: #c23b3b; font-size: 0.82rem; margin: 0; }
+.admin-gate-back { color: var(--text-muted); font-size: 0.82rem; text-decoration: none; margin-top: 6px; }
+.admin-gate-back:hover { color: var(--accent); }
+
+/* ===== ÜST BAR ===== */
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 130%);
+  color: #fff;
+}
+.admin-badge {
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+}
+.admin-header-link { margin-left: auto; border-color: rgba(255, 255, 255, 0.4); color: #fff; }
+.admin-header-link:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+/* ===== ANA İÇERİK ===== */
+.admin-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.admin-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px 26px;
+}
+.admin-card h2 {
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+.admin-hint { color: var(--text-muted); font-size: 0.85rem; line-height: 1.55; margin: 0 0 12px; }
+.admin-field-hint { color: var(--text-muted); font-size: 0.76rem; margin-top: 4px; display: block; }
+
+/* ===== TOKEN FORMU ===== */
+.admin-token-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.admin-token-form input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.admin-token-status { margin: 10px 0 0; font-size: 0.82rem; color: var(--text-muted); }
+
+/* ===== ÜRÜN EKLEME FORMU ===== */
+.admin-form { display: flex; flex-direction: column; gap: 16px; }
+.admin-form-row { display: flex; flex-direction: column; gap: 6px; }
+.admin-form-row label { font-weight: 600; font-size: 0.88rem; color: var(--navy); }
+.admin-form-row input[type="text"],
+.admin-form-row input[type="file"],
+.admin-form-row select,
+.admin-form-row textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.admin-tiers { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+.admin-tier-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: center; }
+.admin-tier-row input {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+.tier-remove-btn { width: 34px; height: 34px; padding: 0; border-radius: 50%; }
+
+.admin-radio-group { display: flex; flex-direction: column; gap: 8px; }
+.admin-radio { display: flex; align-items: center; gap: 8px; font-weight: 400; font-size: 0.9rem; color: var(--text); cursor: pointer; }
+.admin-radio input { width: 16px; height: 16px; accent-color: var(--accent); }
+
+.btn-sm { padding: 7px 14px; font-size: 0.82rem; align-self: flex-start; }
+
+.admin-status { margin: 4px 0 0; font-size: 0.85rem; color: var(--success-dark); min-height: 1.2em; }
+.admin-status-error { color: #c23b3b; }
+
+/* ===== ÜRÜN LİSTESİ ===== */
+.admin-product-list { display: flex; flex-direction: column; gap: 10px; }
+.admin-product-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+.admin-thumb { width: 52px; height: 52px; border-radius: 8px; object-fit: cover; background: var(--bg-alt); }
+.admin-thumb-empty { display: block; }
+.admin-row-info { display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+.admin-row-info strong { font-size: 0.9rem; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.admin-row-info span { font-size: 0.78rem; color: var(--text-muted); }
+.admin-delete-btn { color: #c23b3b; border-color: #c23b3b; }
+.admin-delete-btn:hover { background: #c23b3b; color: #fff; }
+.admin-delete-btn:disabled { opacity: 0.5; }
+
+@media (max-width: 560px) {
+  .admin-header { flex-wrap: wrap; }
+  .admin-header-link { margin-left: 0; }
+  .admin-tier-row { grid-template-columns: 1fr 1fr auto; }
+}

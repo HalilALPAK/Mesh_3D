@@ -1,4 +1,4 @@
-// Kardem3D - temiz, tek biçimli çizgi ikon seti (emoji yerine).
+// TR33D - temiz, tek biçimli çizgi ikon seti (emoji yerine).
 // Her ikon 24x24 viewBox, stroke="currentColor" — CSS'ten renklendirilebilir.
 const WRAP_OPEN = (extra = "") =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ${extra}>`;

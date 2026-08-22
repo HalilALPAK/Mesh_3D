@@ -1,5 +1,5 @@
-// Kardem3D - WhatsApp entegrasyon yardımcıları
-import { CONFIG } from "./config.js?v=12";
+// TR33D - WhatsApp entegrasyon yardımcıları
+import { CONFIG } from "./config.js?v=13";
 
 export function openWhatsApp(message) {
   const url = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -8,7 +8,7 @@ export function openWhatsApp(message) {
 
 export function buildCartMessage(items, { subtotal, shipping, grandTotal }) {
   // items: [{ name, qty, unitPrice, lineTotal }]
-  const lines = [`Merhaba Kardem3D! Aşağıdaki ürünleri sipariş etmek istiyorum:`, ""];
+  const lines = [`Merhaba TR33D! Aşağıdaki ürünleri sipariş etmek istiyorum:`, ""];
   items.forEach((item, i) => {
     lines.push(
       `${i + 1}) ${item.name} — ${item.qty} adet — birim ${item.unitPrice}${CONFIG.CURRENCY} — ara toplam ${item.lineTotal}${CONFIG.CURRENCY}`
@@ -25,7 +25,7 @@ export function buildCartMessage(items, { subtotal, shipping, grandTotal }) {
 
 export function buildCustomModelMessage({ description, fileNames }) {
   const lines = [
-    "Merhaba Kardem3D! Özel bir model/ürün oluşturmanızı istiyorum.",
+    "Merhaba TR33D! Özel bir model/ürün oluşturmanızı istiyorum.",
     "",
   ];
   if (description) {

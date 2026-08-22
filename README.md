@@ -1,4 +1,4 @@
-# Kardem3D — 3D Baskı Mağazası Sitesi
+# TR33D — 3D Baskı Mağazası Sitesi
 
 Saf HTML + CSS + JavaScript (Three.js CDN üzerinden) ile hazırlanmış, build aracı
 gerektirmeyen bir site. `index.html` dosyasını açan herhangi bir statik hosting'e
@@ -19,10 +19,14 @@ python -m http.server 8000
 
 ```
 index.html
+admin.html         -> şifreli admin paneli (ürün ekle/sil)
 css/style.css
+css/admin.css
+data/products.json -> ürün kataloğu (admin panelinin okuyup yazdığı dosya)
 js/
   config.js      -> mağaza ayarları (WhatsApp numarası vb.)
-  products.js     -> ürün kataloğu ve kategoriler
+  products.js     -> kategori tanımları + products.json'ı yükleyen fonksiyon
+  admin.js         -> admin panelinin mantığı (GitHub Contents API)
   viewer.js        -> Three.js STL/OBJ 3D görüntüleyici
   cart.js           -> sepet mantığı ve arayüzü
   reviews.js         -> yorum/puan sistemi
@@ -32,6 +36,7 @@ js/
 assets/
   models/    -> .stl / .obj / .glb ürün modelleri
   images/products/ -> basılmış ürünlerin fotoğrafları
+  images/logo-icon.png -> TR33D logo işareti (header/footer/admin'de kullanılır)
 ```
 
 ## 1) WhatsApp numaranız
@@ -62,45 +67,85 @@ Ara Toplam/Kargo/Genel Toplam satırlarında (kargo bedavaysa 150₺ üstü çiz
 
 ## 2) Ürünlerinizi ekleyin / mevcutları değiştirin
 
-Katalogdaki tüm ürünler gerçek fotoğraflarla eklendi (bazılarının henüz 3D
-modeli yok, sadece fotoğrafla listeleniyor — aşağıya bakın). Yeni ürün
-eklemek için:
+### Admin paneli üzerinden (önerilen, kod bilmeden)
+
+`admin.html` adresini açın (şifre: `TR33D`). İlk seferde bir GitHub erişim
+anahtarı (Personal Access Token) girmeniz istenir — panel, ürün ekleme/silme
+işlemlerini doğrudan bu depoya (`HalilALPAK/Mesh_3D`) yazdığı için buna
+ihtiyaç var. Anahtarı oluşturmak için:
+
+1. GitHub'da **Settings → Developer settings → Personal access tokens →
+   Fine-grained tokens → Generate new token**.
+2. **Repository access**'i "Only select repositories" yapıp yalnızca
+   `Mesh_3D` deposunu seçin.
+3. **Permissions → Contents**'i **Read and write** yapın (başka izin gerekmez).
+4. Anahtarı oluşturup admin panelindeki "GitHub Bağlantısı" kutusuna yapıştırıp
+   Kaydet'e basın. Anahtar yalnızca sizin tarayıcınızda (localStorage) saklanır.
+
+Panelden ürün eklediğinizde görsel(ler) ve `data/products.json` doğrudan
+depoya commit edilir; GitHub Pages birkaç dakika içinde siteyi otomatik
+günceller. "Öne Çıkar" işaretlenen ürünler "Öne Çıkanlar" bölümüne eklenir,
+"En Öne Çıkar" işaretlenen ürün ise ana sayfanın en üstündeki büyük banner'a
+taşınır (yalnızca bir üründe aktif olabilir, yenisini seçtiğinizde eskisinden
+otomatik kaldırılır). "Mevcut Ürünler" listesindeki "Sil" butonu ürünü ve
+görsellerini depodan kaldırır.
+
+**Güvenlik notu:** Şifre ekranı yalnızca sayfayı yanlışlıkla açan ziyaretçileri
+engeller, gerçek bir yetkilendirme değildir (statik bir sitenin kaynak kodu
+herkese açıktır). Gerçek yetki GitHub erişim anahtarınızdadır — bu yüzden
+anahtarı kimseyle paylaşmayın, yalnızca "Contents" iznini verin ve ortak/
+paylaşımlı bir bilgisayar kullandıysanız işiniz bitince panelde "Kaldır"a basın.
+
+### Elle, `data/products.json` dosyasını düzenleyerek
+
+Admin paneli kullanmak istemezseniz aynı işi elle de yapabilirsiniz:
 
 1. `.stl` veya `.obj` dosyanızı `assets/models/` klasörüne kopyalayın.
 2. Ürünün gerçek basılmış fotoğraflarını `assets/images/products/` klasörüne koyun
    (istediğiniz sayıda; ilk fotoğraf kapak fotoğrafı olarak kullanılmaz, ok ile
    3D görünümden sonra sırayla gösterilir).
-3. `js/products.js` içindeki `PRODUCTS` dizisine yeni bir ürün nesnesi ekleyin:
+3. `data/products.json` dosyasına yeni bir ürün nesnesi ekleyin (JSON olduğu için
+   anahtarlar çift tırnaklı olmalı ve son elemandan sonra virgül olmamalı):
 
-```js
+```json
 {
-  id: "benzersiz-id",
-  name: "Ürün Adı",
-  category: "home", // custom | home | toys | accessories | industrial | drone | car
-  featured: true,     // "Öne Çıkanlar" bölümünde de gösterilsin mi?
-  description: "Ürün açıklaması...",
-  model: { type: "stl", url: "assets/models/dosya-adiniz.stl" },
-  // OBJ + MTL kullanıyorsanız: { type: "obj", url: "...obj", mtl: "...mtl" }
-  photos: [
+  "id": "benzersiz-id",
+  "name": "Ürün Adı",
+  "category": "home",
+  "featured": true,
+  "description": "Ürün açıklaması...",
+  "model": { "type": "stl", "url": "assets/models/dosya-adiniz.stl" },
+  "photos": [
     "assets/images/products/dosya-1.jpg",
-    "assets/images/products/dosya-2.jpg",
+    "assets/images/products/dosya-2.jpg"
   ],
-  priceTiers: [
-    { minQty: 1, price: 199 },
-    { minQty: 5, price: 179 },
-    { minQty: 10, price: 149 },
+  "priceTiers": [
+    { "minQty": 1, "price": 199 },
+    { "minQty": 5, "price": 179 },
+    { "minQty": 10, "price": 149 }
   ],
-  ratingSeed: 4.7,       // başlangıç puanı (yorum yokken gösterilecek)
-  reviewCountSeed: 10,   // başlangıç yorum sayısı
-},
+  "ratingSeed": 4.7,
+  "reviewCountSeed": 10
+}
 ```
 
-**Henüz 3D modeli olmayan, sadece fotoğrafı olan bir ürün eklemek isterseniz** `model`
-alanını tamamen kaldırın (ya da `model: null` yazın). O ürün kartında 3D döndürme
-kısmı ve "3D" rozeti otomatik olarak çıkar, sadece fotoğraf(lar) gösterilir. Tek
-fotoğraf varsa geçiş okları da otomatik gizlenir; birden fazla fotoğraf eklerseniz
-oklar yine görünür. Modeli hazır olduğunda `model` alanını normal şekilde eklemeniz
-yeterli.
+`category` şu değerlerden biri olmalı: `custom`, `home`, `toys`, `accessories`,
+`industrial`, `drone`, `car`. `featured: true` yaparsanız ürün "Öne Çıkanlar"
+bölümünde de gösterilir. `model` alanı `type` ("stl"/"obj"/"glb") ve `url`
+bekler; OBJ + MTL kullanıyorsanız `"mtl": "...mtl"` da ekleyin.
+
+**Admin paneli `model` alanını yönetmez** (yalnızca fotoğraf tabanlı ürün
+ekler/siler) — 3D modelli bir ürün eklemek isterseniz bu adımı elle yapmanız
+gerekir. **Henüz 3D modeli olmayan, sadece fotoğrafı olan bir ürün eklemek
+isterseniz** `model` alanını tamamen kaldırın (ya da `"model": null` yazın).
+O ürün kartında 3D döndürme kısmı ve "3D" rozeti otomatik olarak çıkar,
+sadece fotoğraf(lar) gösterilir. Tek fotoğraf varsa geçiş okları da otomatik
+gizlenir; birden fazla fotoğraf eklerseniz oklar yine görünür. Modeli hazır
+olduğunda `model` alanını normal şekilde eklemeniz yeterli.
+
+Dosyayı elle düzenledikten sonra `git add data/products.json && git commit
+&& git push` ile depoya göndermeniz gerekir (admin panelinin aksine, elle
+düzenleme otomatik commit atmaz).
 
 `isHero: true` verirseniz o ürün, arama çubuğunun hemen altındaki büyük 360°
 dönen banner alanında gösterilir (yalnızca bir üründe kullanın).
@@ -190,6 +235,12 @@ ederken bu devre dışı kalır, dosyalar doğrudan yerel klasörden okunur.
 `git push` sonrası canlıdaki değişikliklerin jsDelivr'e yansıması birkaç dakika
 sürebilir (GitHub Pages'in kendisi genelde daha hızlı günceller).
 
+İstisna: `data/products.json` (ürün kataloğu) jsDelivr üzerinden **değil**,
+her zaman doğrudan siteden ve önbellek-kırıcı bir sorgu parametresiyle
+(`?t=...`) çekilir — böylece admin panelinden yapılan bir ürün ekleme/silme
+işlemi, jsDelivr'in günler süren önbelleğini beklemeden, yalnızca GitHub
+Pages'in kendi (çok daha kısa) güncelleme süresi kadar sürede sitede görünür.
+
 ## Tarayıcı desteği
 
 Three.js'in ES module + importmap kullanımı güncel Chrome, Edge, Firefox ve
@@ -202,7 +253,7 @@ Safari sürümlerinde sorunsuz çalışır. Çok eski tarayıcılarda 3D görün
 önbelleğe alabiliyor; bir değişiklik (örn. WhatsApp numarası) yaptıktan sonra
 site hâlâ eski hâliyle açılıyorsa önce **sayfayı tamamen kapatıp yeniden
 açmayı** ya da tarayıcı önbelleğini temizlemeyi deneyin. Kalıcı çözüm için
-`index.html` ve `js/*.js` dosyalarındaki `?v=2` sürüm numaralarını (script/link
-etiketlerinde ve `import ... from "./dosya.js?v=2"` satırlarında) her önemli
-güncellemeden sonra `?v=3`, `?v=4` şeklinde artırın — bu, tarayıcının dosyayı
-önbellekten değil sunucudan yeniden çekmesini garanti eder.
+`index.html`, `admin.html` ve `js/*.js` dosyalarındaki `?v=2` sürüm numaralarını
+(script/link etiketlerinde ve `import ... from "./dosya.js?v=2"` satırlarında)
+her önemli güncellemeden sonra `?v=3`, `?v=4` şeklinde artırın — bu, tarayıcının
+dosyayı önbellekten değil sunucudan yeniden çekmesini garanti eder.

@@ -1,4 +1,4 @@
-// Kardem3D - localStorage yardımcı fonksiyonları
+// TR33D - localStorage yardımcı fonksiyonları
 
 const CART_KEY = "alpotech_cart_v1";
 const REVIEWS_KEY = "alpotech_reviews_v1";

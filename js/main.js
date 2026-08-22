@@ -1,11 +1,11 @@
-// Kardem3D - ana uygulama mantığı
-import { CONFIG, assetUrl } from "./config.js?v=12";
-import { icon } from "./icons.js?v=12";
-import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice } from "./products.js?v=12";
-import { mountLazyViewer } from "./viewer.js?v=12";
-import { addToCart, initCartUI } from "./cart.js?v=12";
-import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=12";
-import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=12";
+// TR33D - ana uygulama mantığı
+import { CONFIG, assetUrl } from "./config.js?v=13";
+import { icon } from "./icons.js?v=13";
+import { CATEGORIES, PRODUCTS, getProductById, getUnitPrice, loadProducts } from "./products.js?v=13";
+import { mountLazyViewer } from "./viewer.js?v=13";
+import { addToCart, initCartUI } from "./cart.js?v=13";
+import { getRatingSummary, renderStars, renderReviewsSection } from "./reviews.js?v=13";
+import { openWhatsApp, buildCustomModelMessage } from "./whatsapp.js?v=13";
 
 // ---------------------------------------------------------------------------
 // Medya görüntüleyici: 3D model <-> basılmış ürün fotoğrafları arasında
@@ -573,8 +573,9 @@ function initTransformDemo() {
   );
 }
 
-function init() {
+async function init() {
   document.getElementById("footer-year").textContent = new Date().getFullYear();
+  await loadProducts();
   renderHero();
   renderCategoryNav();
   renderCategorySections();

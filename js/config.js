@@ -1,11 +1,11 @@
-// Kardem3D - genel site ayarları
+// TR33D - genel site ayarları
 // WhatsApp numarasını ülke koduyla, başında + veya 0 olmadan yazın (örn. Türkiye: 905XXXXXXXXX)
 export const CONFIG = {
-  STORE_NAME: "Kardem3D",
+  STORE_NAME: "TR33D",
   WHATSAPP_NUMBER: "905424433025",
   CURRENCY: "₺",
   DEFAULT_WHATSAPP_GREETING:
-    "Merhaba Kardem3D! Ürünleriniz hakkında bilgi almak istiyorum.",
+    "Merhaba TR33D! Ürünleriniz hakkında bilgi almak istiyorum.",
   // Sepet ara toplamı bu tutara ulaşınca kargo bedava olur; altındaysa
   // SHIPPING_FEE eklenir.
   FREE_SHIPPING_THRESHOLD: 1000,

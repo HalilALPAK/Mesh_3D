@@ -1,4 +1,4 @@
-/* Kardem3D - stil dosyası */
+/* TR33D - stil dosyası */
 
 :root {
   --navy: #2b2420;
@@ -163,6 +163,9 @@ h1, h2, h3 {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
@@ -172,6 +175,12 @@ h1, h2, h3 {
   flex-shrink: 0;
 }
 .logo span { color: var(--accent); }
+.logo-mark {
+  height: 34px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
 
 .search-bar {
   flex: 1;
@@ -1030,7 +1039,7 @@ h1, h2, h3 {
 }
 .footer-col a:hover { color: var(--accent); }
 .footer-col a .wa-icon { margin-right: 6px; color: var(--whatsapp); }
-.footer-brand .logo { pointer-events: none; margin-bottom: 10px; display: inline-block; }
+.footer-brand .logo { pointer-events: none; margin-bottom: 10px; display: inline-flex; }
 .footer-brand p { font-size: 0.85rem; line-height: 1.6; max-width: 40ch; margin: 0; color: #c3b6a5; }
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -1085,6 +1094,7 @@ h1, h2, h3 {
 @media (max-width: 520px) {
   .header-inner { gap: 10px; }
   .logo { font-size: 1.25rem; }
+  .logo-mark { height: 26px; }
   .hero-info h1 { font-size: 1.6rem; }
   .whatsapp-float { bottom: 16px; right: 16px; width: 52px; height: 52px; font-size: 1.5rem; }
   .shipping-banner { font-size: 0.76rem; padding: 8px 12px; }

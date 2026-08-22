@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>TR33D — Admin</title>
+<link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css?v=13" />
+<link rel="stylesheet" href="css/admin.css?v=13" />
+</head>
+<body class="admin-body">
+
+<!-- ===== ŞİFRE EKRANI ===== -->
+<div id="admin-gate" class="admin-gate">
+  <form id="gate-form" class="admin-gate-card">
+    <span class="logo admin-gate-logo"><img src="assets/images/logo-icon.png" class="logo-mark" alt="TR33D logosu" /><span class="logo-text">TR3<span>3D</span></span></span>
+    <h1>Admin Girişi</h1>
+    <p>Devam etmek için şifreyi girin.</p>
+    <input type="password" id="gate-password" placeholder="Şifre" autocomplete="off" required />
+    <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+    <p class="admin-gate-error" id="gate-error" hidden>Şifre yanlış.</p>
+    <a href="index.html" class="admin-gate-back">← Siteye dön</a>
+  </form>
+</div>
+
+<!-- ===== ADMIN PANELİ ===== -->
+<div id="admin-panel" class="admin-panel" hidden>
+  <header class="admin-header">
+    <span class="logo"><img src="assets/images/logo-icon.png" class="logo-mark" alt="TR33D logosu" /><span class="logo-text">TR3<span>3D</span></span></span>
+    <span class="admin-badge">Admin Panel</span>
+    <a href="index.html" class="btn btn-outline admin-header-link" target="_blank" rel="noopener">Siteyi Görüntüle</a>
+  </header>
+
+  <main class="admin-main">
+
+    <section class="admin-card" id="token-section">
+      <h2>GitHub Bağlantısı</h2>
+      <p class="admin-hint">
+        Bu panelden yapılan ürün ekleme/silme işlemleri doğrudan <strong>HalilALPAK/Mesh_3D</strong> deposuna
+        yazılır ve site birkaç dakika içinde otomatik güncellenir. Bunun için "Contents: Read and write"
+        izni verilmiş bir GitHub erişim anahtarı (Personal Access Token) gerekir. Anahtarınız yalnızca bu
+        tarayıcıda (localStorage) saklanır; bizim sunucumuza değil, doğrudan GitHub'a gönderilir. Anahtarı
+        kimseyle paylaşmayın ve ortak/paylaşımlı bir bilgisayardaysanız işiniz bitince "Kaldır"a basın.
+      </p>
+      <form id="token-form" class="admin-token-form">
+        <input type="password" id="token-input" placeholder="GitHub erişim anahtarı (ghp_... veya github_pat_...)" autocomplete="off" />
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <button type="button" id="token-clear-btn" class="btn btn-outline">Kaldır</button>
+      </form>
+      <p class="admin-token-status" id="token-status"></p>
+    </section>
+
+    <section class="admin-card">
+      <h2>Yeni Ürün Ekle</h2>
+      <form id="add-product-form" class="admin-form">
+        <div class="admin-form-row">
+          <label for="p-images">Ürün Görseli</label>
+          <input type="file" id="p-images" accept="image/*" multiple required />
+          <span class="admin-field-hint">Birden fazla fotoğraf seçebilirsiniz (ilk seçilen kapak fotoğrafı olur).</span>
+        </div>
+        <div class="admin-form-row">
+          <label for="p-name">Ürün Adı</label>
+          <input type="text" id="p-name" required />
+        </div>
+        <div class="admin-form-row">
+          <label for="p-category">Kategori</label>
+          <select id="p-category" required></select>
+        </div>
+        <div class="admin-form-row">
+          <label for="p-desc">Açıklama</label>
+          <textarea id="p-desc" rows="3" required></textarea>
+        </div>
+        <div class="admin-form-row">
+          <label>Adete Göre Fiyat</label>
+          <div id="tiers-container" class="admin-tiers"></div>
+          <button type="button" id="add-tier-btn" class="btn btn-outline btn-sm">+ Kademe Ekle</button>
+        </div>
+        <div class="admin-form-row">
+          <label>Görünürlük</label>
+          <div class="admin-radio-group">
+            <label class="admin-radio"><input type="radio" name="visibility" value="featured" /> Öne Çıkar</label>
+            <label class="admin-radio"><input type="radio" name="visibility" value="hero" /> En Öne Çıkar</label>
+          </div>
+          <span class="admin-field-hint">"En Öne Çıkar" seçilirse bu ürün ana sayfanın en üstünde büyük gösterilir (önceki büyük ürünün yerini alır). Hiçbiri seçilmezse ürün yalnızca kendi kategorisinde listelenir.</span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="upload-btn">Yükle</button>
+        <p class="admin-status" id="add-status"></p>
+      </form>
+    </section>
+
+    <section class="admin-card">
+      <h2>Mevcut Ürünler</h2>
+      <div id="product-list" class="admin-product-list">
+        <p class="admin-hint">GitHub anahtarını kaydedince ürünler burada listelenir.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script type="module" src="js/admin.js?v=13"></script>
+</body>
+</html>
