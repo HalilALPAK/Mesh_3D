@@ -4,7 +4,6 @@
     "name": "Kişiye Özel Bebek Figürü",
     "category": "custom",
     "featured": true,
-    "isHero": true,
     "description": "Gönderdiğiniz fotoğraftan yola çıkarak size veya sevdiklerinize benzeyen, tamamen kişiye özel bir 3D baskı figür üretiyoruz. Buradaki örnek figür, gönderilen bir bebek fotoğrafından üretilmiştir. Siz de kendi fotoğrafınızı sayfanın altındaki \"Kendi Modelinizi Gönderin\" alanından bize ulaştırabilirsiniz.",
     "photos": [
       "assets/images/products/bebek-1.jpg"
@@ -23,7 +22,7 @@
         "price": 499
       }
     ],
-    "ratingSeed": 5.0,
+    "ratingSeed": 5,
     "reviewCountSeed": 3
   },
   {
@@ -50,7 +49,7 @@
         "price": 89
       }
     ],
-    "ratingSeed": 5.0,
+    "ratingSeed": 5,
     "reviewCountSeed": 4
   },
   {
@@ -377,15 +376,16 @@
     "priceTiers": [
       {
         "minQty": 1,
-        "price": 599
+        "price": 1000
       },
       {
         "minQty": 3,
-        "price": 549
+        "price": 849
       }
     ],
     "ratingSeed": 4.9,
-    "reviewCountSeed": 8
+    "reviewCountSeed": 8,
+    "isHero": true
   },
   {
     "id": "coffee_friends",
@@ -432,7 +432,7 @@
         "price": 649
       }
     ],
-    "ratingSeed": 5.0,
+    "ratingSeed": 5,
     "reviewCountSeed": 6
   },
   {
@@ -677,7 +677,7 @@
         "price": 89
       }
     ],
-    "ratingSeed": 5.0,
+    "ratingSeed": 5,
     "reviewCountSeed": 8
   },
   {
